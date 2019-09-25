@@ -1,11 +1,8 @@
 {
 	"name": "sveltejs-forms",
-	"version": "0.1.3",
+	"version": "0.1.4",
 	"license": "MIT",
-	"repository": {
-		"type": "git",
-		"url": "git@github.com:mdauner/sveltejs-forms.git"
-	},
+	"repository": "github:mdauner/sveltejs-forms",
 	"svelte": "src/components/components.module.js",
 	"module": "dist/index.min.mjs",
 	"main": "dist/index.min.js",
