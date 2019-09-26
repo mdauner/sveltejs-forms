@@ -1,6 +1,6 @@
 {
 	"name": "sveltejs-forms",
-	"version": "0.1.4",
+	"version": "0.1.5",
 	"license": "MIT",
 	"repository": "github:mdauner/sveltejs-forms",
 	"svelte": "src/components/components.module.js",

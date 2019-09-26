@@ -1,12 +1,26 @@
-# Sveltejs Forms
+# sveltejs-forms
+
+![npm](https://img.shields.io/npm/v/sveltejs-forms)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/sveltejs-forms)
+![npm](https://img.shields.io/npm/dw/sveltejs-forms)
+
+![GitHub](https://img.shields.io/github/license/mdauner/sveltejs-forms)
+![Actions Status](https://github.com/mdauner/sveltejs-forms/workflows/Node%20CI/badge.svg)
+[![Maintainability](https://api.codeclimate.com/v1/badges/a5df28cac1b693245079/maintainability)](https://codeclimate.com/github/mdauner/sveltejs-forms/maintainability)
+
+Declarative forms for [Svelte](https://svelte.dev/).
 
 ## Install
 
-`npm i sveltejs-forms`
+```shell
+$ npm i sveltejs-forms
+```
 
 or
 
-`yarn add sveltejs-forms`
+```shell
+$ yarn add sveltejs-forms
+```
 
 ## How to use
 
