@@ -83,6 +83,6 @@
 	}
 </script>
 
-<form on:submit|preventDefault={handleSubmit}>
+<form on:submit|preventDefault={handleSubmit} class="sveltejs-forms">
 	<slot isSubmitting={$isSubmitting} />
 </form>
