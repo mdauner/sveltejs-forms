@@ -67,6 +67,7 @@
 
 	async function handleSubmit(event) {
 		let isValid = false;
+		Object.keys($values).forEach((name) => ($touched[name] = true));
 
 		if (schema) {
 			isValid = await validate();
