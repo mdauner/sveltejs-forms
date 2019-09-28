@@ -14,20 +14,22 @@
 	registerInput(name);
 </script>
 
-{#if multiline}
-	<textarea
-		{name}
-		{placeholder}
-		value={$values[name]}
-		on:change={handleChange} />
-{:else}
-	<input
-		{name}
-		{type}
-		{placeholder}
-		value={$values[name]}
-		on:change={handleChange} />
-{/if}
-{#if $touched[name] && $errors[name]}
-	<div>{$errors[name]}</div>
-{/if}
+<div class="field">
+	{#if multiline}
+		<textarea
+			{name}
+			{placeholder}
+			value={$values[name]}
+			on:change={handleChange} />
+	{:else}
+		<input
+			{name}
+			{type}
+			{placeholder}
+			value={$values[name]}
+			on:change={handleChange} />
+	{/if}
+	{#if $touched[name] && $errors[name]}
+		<div class="error">{$errors[name]}</div>
+	{/if}
+</div>
