@@ -1,5 +1,5 @@
 <script>
-	import { Form, Input } from './components/components.module.js';
+	import { Form, Input, Select } from './components/components.module.js';
 	import * as yup from 'yup';
 
 	function handleSubmit({ detail: { values, setSubmitting, resetForm } }) {
@@ -12,7 +12,8 @@
 		/**
 		 * {
 		 *   email: 'email@example.com',
-		 *   password: '123456'
+		 *   password: '123456',
+		 *   language: 'svelte'
 		 * }
 		 */
 	}
@@ -23,7 +24,14 @@
 			.required()
 			.email(),
 		password: yup.string().min(4),
+		language: yup.string().required(),
 	});
+
+	const options = [
+		{ id: 'svelte', title: 'Svelte' },
+		{ id: 'react', title: 'React' },
+		{ id: 'angular', title: 'Angular' },
+	];
 </script>
 
 <style lang="scss">
@@ -46,6 +54,7 @@
 <Form {schema} on:submit={handleSubmit} let:isSubmitting>
 	<Input name="email" placeholder="Email" />
 	<Input name="password" type="password" placeholder="Password" />
+	<Select name="language" {options} />
 
 	<button type="submit" disabled={isSubmitting}>Sign in</button>
 </Form>
