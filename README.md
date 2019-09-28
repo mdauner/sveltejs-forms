@@ -28,7 +28,7 @@ $ yarn add sveltejs-forms
 
 ```html
 <script>
-	import { Form, Input } from 'sveltejs-forms';
+	import { Form, Input, Select } from 'sveltejs-forms';
 	import * as yup from 'yup';
 
 	function handleSubmit({ detail: { values, setSubmitting, resetForm } }) {
@@ -41,7 +41,8 @@ $ yarn add sveltejs-forms
 		/**
 		 * {
 		 *   email: 'email@example.com',
-		 *   password: '123456'
+		 *   password: '123456',
+		 *   language: 'svelte'
 		 * }
 		 */
 	}
@@ -51,8 +52,15 @@ $ yarn add sveltejs-forms
 			.string()
 			.required()
 			.email(),
-		password: yup.string().min(4)
+		password: yup.string().min(4),
+		language: yup.string().required(),
 	});
+
+	const options = [
+		{ id: 'svelte', title: 'Svelte' },
+		{ id: 'react', title: 'React' },
+		{ id: 'angular', title: 'Angular' },
+	];
 </script>
 
 <style lang="scss">
@@ -75,6 +83,7 @@ $ yarn add sveltejs-forms
 <Form {schema} on:submit={handleSubmit} let:isSubmitting>
 	<Input name="email" />
 	<Input name="password" type="password" />
+	<Select name="language" {options} />
 
 	<button type="submit" disabled={isSubmitting}>Sign in</button>
 </Form>
