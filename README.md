@@ -6,6 +6,7 @@
 
 ![GitHub](https://img.shields.io/github/license/mdauner/sveltejs-forms)
 ![Actions Status](https://github.com/mdauner/sveltejs-forms/workflows/Node%20CI/badge.svg)
+[![codecov](https://codecov.io/gh/mdauner/sveltejs-forms/branch/master/graph/badge.svg)](https://codecov.io/gh/mdauner/sveltejs-forms)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a5df28cac1b693245079/maintainability)](https://codeclimate.com/github/mdauner/sveltejs-forms/maintainability)
 
 Declarative forms for [Svelte](https://svelte.dev/).

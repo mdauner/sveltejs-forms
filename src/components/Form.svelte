@@ -55,8 +55,7 @@
 		}
 	}
 
-	function handleChange(event) {
-		const { name, value } = event.target;
+	function handleChange(name, value) {
 		$values[name] = value;
 		$touched[name] = true;
 
