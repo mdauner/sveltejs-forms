@@ -26,8 +26,8 @@ jobs:
           yarn run prettier
           yarn run test
       - name: Codecov
-        uses: codecov/codecov-action@v1.0.2
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
+        run: bash <(curl -s https://codecov.io/bash) -t $TOKEN -B $REF
         env:
           CI: true
+          TOKEN: "${{ secrets.CODECOV_TOKEN }}"
+          REF: "${{ github.ref }}"
