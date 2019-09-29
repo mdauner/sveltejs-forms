@@ -1,86 +1,88 @@
 {
-	"name": "sveltejs-forms",
-	"description": "Declarative forms for Svelte",
-	"homepage": "https://mdauner.github.io/sveltejs-forms/",
-	"version": "0.2.0",
-	"license": "MIT",
-	"repository": "github:mdauner/sveltejs-forms",
-	"svelte": "src/components/components.module.js",
-	"module": "dist/index.min.mjs",
-	"main": "dist/index.min.js",
-	"devDependencies": {
-		"@babel/core": "7.6.2",
-		"@babel/plugin-syntax-dynamic-import": "7.2.0",
-		"@babel/plugin-transform-runtime": "7.6.2",
-		"@babel/preset-env": "7.6.2",
-		"@testing-library/jest-dom": "4.1.0",
-		"@testing-library/svelte": "1.8.0",
-		"@types/jest": "24.0.18",
-		"autoprefixer": "9.6.1",
-		"babel-jest": "24.9.0",
-		"eslint": "6.4.0",
-		"eslint-config-prettier": "6.3.0",
-		"eslint-plugin-jest": "22.17.0",
-		"eslint-plugin-svelte3": "2.7.3",
-		"husky": "3.0.7",
-		"jest": "24.9.0",
-		"jest-transform-svelte": "2.1.0",
-		"lint-staged": "9.4.0",
-		"node-sass": "^4.12.0",
-		"npm-run-all": "4.1.5",
-		"postcss": "7.0.18",
-		"postcss-load-config": "^2.1.0",
-		"prettier": "1.18.2",
-		"rollup": "1.21.4",
-		"rollup-plugin-babel": "4.3.3",
-		"rollup-plugin-commonjs": "10.1.0",
-		"rollup-plugin-livereload": "1.0.3",
-		"rollup-plugin-node-resolve": "5.2.0",
-		"rollup-plugin-svelte": "5.1.0",
-		"rollup-plugin-terser": "5.1.2",
-		"sirv-cli": "0.4.4",
-		"svelte": "3.12.1",
-		"svelte-preprocess": "3.1.2",
-		"yup": "0.27.0"
-	},
-	"scripts": {
-		"lint": "eslint --color ./**/*.js",
-		"test": "jest --verbose",
-		"autobuild": "rollup -c -w",
-		"start:dev": "sirv public --single --dev",
-		"dev": "run-p start:dev autobuild",
-		"build": "rollup -c",
-		"prepublishOnly": "npm run build"
-	},
-	"browserslist": [
-		"defaults"
-	],
-	"keywords": [
-		"svelte",
-		"forms",
-		"validation",
-		"javascript"
-	],
-	"files": [
-		"src",
-		"dist"
-	],
-	"husky": {
-		"hooks": {
-			"pre-commit": "lint-staged"
-		}
-	},
-	"lint-staged": {
-		"*.{js, svelte}": [
-			"eslint --fix",
-			"git add"
-		],
-		"*.{html, css, scss, stylus, js, ts, json, yml, md}": [
-			"prettier --write",
-			"git add"
-		]
-	},
-	"peerDependencies": {
-		"yup": "0.27.0"
-	}
+  "name": "sveltejs-forms",
+  "description": "Declarative forms for Svelte",
+  "homepage": "https://mdauner.github.io/sveltejs-forms/",
+  "version": "0.2.0",
+  "license": "MIT",
+  "repository": "github:mdauner/sveltejs-forms",
+  "svelte": "src/components/components.module.js",
+  "module": "dist/index.min.mjs",
+  "main": "dist/index.min.js",
+  "devDependencies": {
+    "@babel/core": "7.6.2",
+    "@babel/plugin-syntax-dynamic-import": "7.2.0",
+    "@babel/plugin-transform-runtime": "7.6.2",
+    "@babel/preset-env": "7.6.2",
+    "@testing-library/jest-dom": "4.1.0",
+    "@testing-library/svelte": "1.8.0",
+    "@types/jest": "24.0.18",
+    "autoprefixer": "9.6.1",
+    "babel-jest": "24.9.0",
+    "eslint": "6.4.0",
+    "eslint-config-prettier": "6.3.0",
+    "eslint-plugin-jest": "22.17.0",
+    "eslint-plugin-svelte3": "2.7.3",
+    "husky": "3.0.7",
+    "jest": "24.9.0",
+    "jest-transform-svelte": "2.1.0",
+    "lint-staged": "9.4.0",
+    "node-sass": "^4.12.0",
+    "npm-run-all": "4.1.5",
+    "postcss": "7.0.18",
+    "postcss-load-config": "^2.1.0",
+    "prettier": "1.18.2",
+    "prettier-plugin-svelte": "^0.7.0",
+    "rollup": "1.21.4",
+    "rollup-plugin-babel": "4.3.3",
+    "rollup-plugin-commonjs": "10.1.0",
+    "rollup-plugin-livereload": "1.0.3",
+    "rollup-plugin-node-resolve": "5.2.0",
+    "rollup-plugin-svelte": "5.1.0",
+    "rollup-plugin-terser": "5.1.2",
+    "sirv-cli": "0.4.4",
+    "svelte": "3.12.1",
+    "svelte-preprocess": "3.1.2",
+    "yup": "0.27.0"
+  },
+  "scripts": {
+    "prettier": "prettier --check '**/*.{svelte, html, css, scss, stylus, js, ts, json, yml, md}' --plugin-search-dir=.",
+    "lint": "eslint --color './**/*.{js,svelte}'",
+    "test": "jest --verbose",
+    "autobuild": "rollup -c -w",
+    "start:dev": "sirv public --single --dev",
+    "dev": "run-p start:dev autobuild",
+    "build": "rollup -c",
+    "prepublishOnly": "npm run build"
+  },
+  "browserslist": [
+    "defaults"
+  ],
+  "keywords": [
+    "svelte",
+    "forms",
+    "validation",
+    "javascript"
+  ],
+  "files": [
+    "src",
+    "dist"
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{svelte,js}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{svelte, html, css, scss, stylus, js, ts, json, yml, md}": [
+      "prettier --write --plugin-search-dir=.",
+      "git add"
+    ]
+  },
+  "peerDependencies": {
+    "yup": "0.27.0"
+  }
 }
