@@ -10,10 +10,18 @@
 	);
 
 	registerInput(name);
+
+	function onChange(event) {
+		const value = Array.from(event.target.selectedOptions).map(
+			(option) => option.value
+		);
+
+		handleChange(name, value);
+	}
 </script>
 
 <div class="field">
-	<select {name} value={$values[name]} on:change={handleChange}>
+	<select {name} value={$values[name]} on:change={onChange}>
 		<option value="" />
 		{#each options as option}
 			<option value={option.id}>{option.title}</option>

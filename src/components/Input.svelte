@@ -12,6 +12,10 @@
 	);
 
 	registerInput(name);
+
+	function onChange(event) {
+		handleChange(name, event.target.value);
+	}
 </script>
 
 <div class="field">
@@ -20,14 +24,14 @@
 			{name}
 			{placeholder}
 			value={$values[name]}
-			on:change={handleChange} />
+			on:change={onChange} />
 	{:else}
 		<input
 			{name}
 			{type}
 			{placeholder}
 			value={$values[name]}
-			on:change={handleChange} />
+			on:change={onChange} />
 	{/if}
 	{#if $touched[name] && $errors[name]}
 		<div class="error">{$errors[name]}</div>
