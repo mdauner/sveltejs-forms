@@ -1,2 +1,4 @@
 public
 dist
+coverage
+node_modules

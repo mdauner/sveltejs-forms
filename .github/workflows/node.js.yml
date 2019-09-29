@@ -22,6 +22,8 @@ jobs:
         run: |
           yarn install
           yarn run build
+          yarn run lint
+          yarn run prettier
           yarn run test
       - name: Codecov
         uses: codecov/codecov-action@v1.0.2
