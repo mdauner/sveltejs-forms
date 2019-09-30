@@ -19,6 +19,12 @@
     registerInput: name => {
       $values[name] = '';
       $touched[name] = false;
+      $errors[name] = null;
+    },
+    unregisterInput: name => {
+      delete $values[name];
+      delete $touched[name];
+      delete $errors[name];
     },
     handleChange,
     values,

@@ -1,15 +1,24 @@
 <script>
-  import { getContext } from 'svelte';
+  import { getContext, onDestroy } from 'svelte';
   import { FORM } from './Form.svelte';
 
   export let name;
   export let options;
 
-  const { registerInput, handleChange, values, errors, touched } = getContext(
-    FORM
-  );
+  const {
+    registerInput,
+    unregisterInput,
+    handleChange,
+    values,
+    errors,
+    touched,
+  } = getContext(FORM);
 
   registerInput(name);
+
+  onDestroy(() => {
+    unregisterInput(name);
+  });
 
   function onChange(event) {
     const value = Array.from(event.target.selectedOptions).map(
