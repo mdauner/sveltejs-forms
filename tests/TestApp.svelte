@@ -3,6 +3,7 @@
 
   export let onSubmit = () => {};
   export let schema = null;
+  export let initialValues = {};
   export let showOptionalField = false;
   export let form = null;
 
@@ -13,7 +14,12 @@
   ];
 </script>
 
-<Form {schema} on:submit={onSubmit} let:isSubmitting bind:this={form}>
+<Form
+  {schema}
+  {initialValues}
+  on:submit={onSubmit}
+  let:isSubmitting
+  bind:this={form}>
   <Input name="email" placeholder="Email" />
   {#if showOptionalField}
     <Input name="optional" placeholder="Optional" />
