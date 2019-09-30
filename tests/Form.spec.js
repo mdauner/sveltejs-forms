@@ -9,10 +9,13 @@ describe('Form', () => {
     });
     const signInButton = getByText('Sign in');
 
+    expect(component.form.$$.ctx.$isSubmitting).toBe(false);
     expect(signInButton).not.toHaveAttribute('disabled');
+
     await fireEvent.click(signInButton);
     expect(component.onSubmit).toHaveBeenCalledTimes(1);
     expect(signInButton).toHaveAttribute('disabled');
+    expect(component.form.$$.ctx.$isSubmitting).toBe(true);
   });
 
   it('shows error message when schema is defined', async () => {
@@ -22,7 +25,7 @@ describe('Form', () => {
         .required()
         .email(),
     });
-    const { getByPlaceholderText, getByText } = render(App, {
+    const { component, getByPlaceholderText, getByText } = render(App, {
       props: { schema },
     });
     const emailInput = getByPlaceholderText('Email');
@@ -33,6 +36,39 @@ describe('Form', () => {
     await wait(() => {
       expect(getByText('email must be a valid email')).toBeInTheDocument();
     });
+    expect(component.form.$$.ctx.$errors).toEqual({
+      email: 'email must be a valid email',
+    });
+  });
+
+  it('registers fields and sets default values', async () => {
+    const { component } = render(App);
+
+    expect(component.form.$$.ctx.$values).toEqual({ email: '', language: '' });
+    expect(component.form.$$.ctx.$touched).toEqual({
+      email: false,
+      language: false,
+    });
+    expect(component.form.$$.ctx.$errors).toEqual({
+      email: null,
+      language: null,
+    });
+  });
+
+  it('unregisters when field is removed', async () => {
+    const { component, getByText, getByPlaceholderText } = render(App);
+
+    expect(component.form.$$.ctx.$values).not.toHaveProperty('optional');
+    let showButton = getByText('Show');
+    await showButton.click();
+    await wait(() => {
+      expect(getByPlaceholderText('Optional')).toBeInTheDocument();
+      expect(component.form.$$.ctx.$values).toHaveProperty('optional');
+    });
+
+    showButton = getByText('Hide');
+    await showButton.click();
+    expect(component.form.$$.ctx.$values).not.toHaveProperty('optional');
   });
 
   it('matches snapshot', async () => {
@@ -52,6 +88,11 @@ describe('Form', () => {
             />
              
           </div>
+           
+           
+          <button>
+            Show
+          </button>
            
           <div
             class="field"
