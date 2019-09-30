@@ -55,6 +55,17 @@ describe('Form', () => {
     });
   });
 
+  it('sets initial values', async () => {
+    const { component } = render(App, {
+      props: { initialValues: { email: 'test@user.com' } },
+    });
+
+    expect(component.form.$$.ctx.$values).toEqual({
+      email: 'test@user.com',
+      language: '',
+    });
+  });
+
   it('unregisters when field is removed', async () => {
     const { component, getByText, getByPlaceholderText } = render(App);
 

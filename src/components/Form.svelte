@@ -6,6 +6,7 @@
   import { setContext, createEventDispatcher } from 'svelte';
   import { writable } from 'svelte/store';
 
+  export let initialValues = {};
   export let schema = null;
 
   const dispatch = createEventDispatcher();
@@ -17,7 +18,7 @@
 
   setContext(FORM, {
     registerInput: name => {
-      $values[name] = '';
+      $values[name] = initialValues[name] || '';
       $touched[name] = false;
       $errors[name] = null;
     },
@@ -35,7 +36,7 @@
 
   function resetForm() {
     Object.keys($values).forEach(name => {
-      $values[name] = '';
+      $values[name] = initialValues[name] || '';
       $errors[name] = null;
       $touched[name] = false;
     });
