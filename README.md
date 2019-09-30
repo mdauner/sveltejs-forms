@@ -86,8 +86,8 @@ $ yarn add sveltejs-forms
 </style>
 
 <Form
-  {schema} //optional
-  {initialValues} //optional
+  {schema} <!-- optional -->
+  {initialValues}  <!-- optional -->
   on:submit={handleSubmit}
   let:isSubmitting>
   <Input name="email" />
