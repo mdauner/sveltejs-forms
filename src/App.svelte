@@ -32,6 +32,10 @@
     { id: 'react', title: 'React' },
     { id: 'angular', title: 'Angular' },
   ];
+
+  const initialValues = {
+    language: 'svelte',
+  };
 </script>
 
 <style lang="scss">
@@ -51,7 +55,7 @@
   }
 </style>
 
-<Form {schema} on:submit={handleSubmit} let:isSubmitting>
+<Form {schema} {initialValues} on:submit={handleSubmit} let:isSubmitting>
   <Input name="email" placeholder="Email" />
   <Input name="password" type="password" placeholder="Password" />
   <Select name="language" {options} />
