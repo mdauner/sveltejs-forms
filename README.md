@@ -62,6 +62,10 @@ $ yarn add sveltejs-forms
     { id: 'react', title: 'React' },
     { id: 'angular', title: 'Angular' },
   ];
+
+  const initialValues = {
+    language: 'svelte'
+  }
 </script>
 
 <style lang="scss">
@@ -81,7 +85,11 @@ $ yarn add sveltejs-forms
   }
 </style>
 
-<Form {schema} on:submit={handleSubmit} let:isSubmitting>
+<Form
+  {schema} //optional
+  {initialValues} //optional
+  on:submit={handleSubmit}
+  let:isSubmitting>
   <Input name="email" />
   <Input name="password" type="password" />
   <Select name="language" {options} />
