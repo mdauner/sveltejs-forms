@@ -8,22 +8,22 @@
   export let multiline = false;
 
   const {
-    registerInput,
-    unregisterInput,
-    handleChange,
+    registerField,
+    unregisterField,
+    touchField,
     values,
     errors,
     touched,
   } = getContext(FORM);
 
-  registerInput(name);
+  registerField(name);
 
   onDestroy(() => {
-    unregisterInput(name);
+    unregisterField(name);
   });
 
   function onChange(event) {
-    handleChange(name, event.target.value);
+    touchField(name, event.target.value);
   }
 </script>
 

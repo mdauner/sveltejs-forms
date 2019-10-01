@@ -4,6 +4,7 @@
 
   export let name;
   export let options;
+  export let multiple = false;
 
   const {
     registerField,
@@ -26,12 +27,28 @@
 </script>
 
 <div class="field">
-  <select {name} bind:value={$values[name]} on:change={onChange}>
-    <option value="" />
-    {#each options as option}
-      <option value={option.id}>{option.title}</option>
-    {/each}
-  </select>
+  {#each options as option}
+    {#if multiple}
+      <input
+        id={option.id}
+        type="checkbox"
+        {name}
+        on:change={onChange}
+        bind:group={$values[name]}
+        value={option.id} />
+    {:else}
+      <input
+        id={option.id}
+        type="radio"
+        {name}
+        on:change={onChange}
+        bind:group={$values[name]}
+        value={option.id} />
+    {/if}
+    {#if option.title}
+      <label for={option.id}>{option.title}</label>
+    {/if}
+  {/each}
   {#if $touched[name] && $errors[name]}
     <div class="error">{$errors[name]}</div>
   {/if}
