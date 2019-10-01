@@ -1,5 +1,10 @@
 <script>
-  import { Form, Input, Select } from './components/components.module.js';
+  import {
+    Form,
+    Input,
+    Select,
+    Choice,
+  } from './components/components.module.js';
   import * as yup from 'yup';
 
   function handleSubmit({ detail: { values, setSubmitting, resetForm } }) {
@@ -13,7 +18,8 @@
      * {
      *   email: 'email@example.com',
      *   password: '123456',
-     *   language: 'svelte'
+     *   language: 'svelte',
+     *   os: 'osx,linux'
      * }
      */
   }
@@ -25,12 +31,19 @@
       .email(),
     password: yup.string().min(4),
     language: yup.string().required(),
+    os: yup.string(),
   });
 
-  const options = [
+  const langOptions = [
     { id: 'svelte', title: 'Svelte' },
     { id: 'react', title: 'React' },
     { id: 'angular', title: 'Angular' },
+  ];
+
+  const osOptions = [
+    { id: 'macos', title: 'macOS' },
+    { id: 'linux', title: 'Linux 🐧' },
+    { id: 'windows', title: 'Windows' },
   ];
 
   const initialValues = {
@@ -43,6 +56,7 @@
     background-color: lightgray;
     display: inline-block;
     padding: 1rem;
+
     .field {
       margin-bottom: 1rem;
     }
@@ -58,7 +72,8 @@
 <Form {schema} {initialValues} on:submit={handleSubmit} let:isSubmitting>
   <Input name="email" placeholder="Email" />
   <Input name="password" type="password" placeholder="Password" />
-  <Select name="language" {options} />
+  <Select name="language" options={langOptions} />
+  <Choice name="os" options={osOptions} multiple />
 
   <button type="submit" disabled={isSubmitting}>Sign in</button>
 </Form>

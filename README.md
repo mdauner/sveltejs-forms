@@ -29,7 +29,7 @@ $ yarn add sveltejs-forms
 
 ```html
 <script>
-  import { Form, Input, Select } from 'sveltejs-forms';
+  import { Form, Input, Select, Choice } from 'sveltejs-forms';
   import * as yup from 'yup';
 
   function handleSubmit({ detail: { values, setSubmitting, resetForm } }) {
@@ -43,7 +43,8 @@ $ yarn add sveltejs-forms
      * {
      *   email: 'email@example.com',
      *   password: '123456',
-     *   language: 'svelte'
+     *   language: 'svelte',
+     *   os: 'osx,linux'
      * }
      */
   }
@@ -55,22 +56,30 @@ $ yarn add sveltejs-forms
       .email(),
     password: yup.string().min(4),
     language: yup.string().required(),
+    os: yup.string(),
   });
 
-  const options = [
+  const langOptions = [
     { id: 'svelte', title: 'Svelte' },
     { id: 'react', title: 'React' },
     { id: 'angular', title: 'Angular' },
   ];
 
+  const osOptions = [
+    { id: 'macos', title: 'macOS' },
+    { id: 'linux', title: 'Linux 🐧' },
+    { id: 'windows', title: 'Windows' },
+  ];
+
   const initialValues = {
-    language: 'svelte'
-  }
+    language: 'svelte',
+  };
 </script>
 
 <style lang="scss">
   :global(.sveltejs-forms) {
     background-color: lightgray;
+    display: inline-block;
     padding: 1rem;
 
     .field {
@@ -85,14 +94,11 @@ $ yarn add sveltejs-forms
   }
 </style>
 
-<Form
-  {schema} <!-- optional -->
-  {initialValues}  <!-- optional -->
-  on:submit={handleSubmit}
-  let:isSubmitting>
-  <Input name="email" />
-  <Input name="password" type="password" />
-  <Select name="language" {options} />
+<Form {schema} {initialValues} on:submit={handleSubmit} let:isSubmitting>
+  <Input name="email" placeholder="Email" />
+  <Input name="password" type="password" placeholder="Password" />
+  <Select name="language" options={langOptions} />
+  <Choice name="os" options={osOptions} multiple />
 
   <button type="submit" disabled={isSubmitting}>Sign in</button>
 </Form>

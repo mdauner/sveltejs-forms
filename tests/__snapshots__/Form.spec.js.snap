@@ -1,0 +1,104 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Form matches snapshot 1`] = `
+<div>
+  <form
+    class="sveltejs-forms"
+  >
+    <div
+      class="field"
+    >
+      <input
+        name="email"
+        placeholder="Email"
+        type="text"
+      />
+       
+    </div>
+     
+     
+    <button>
+      Show
+    </button>
+     
+    <div
+      class="field"
+    >
+      <select
+        name="language"
+      >
+        <option
+          value=""
+        />
+        <option
+          value="svelte"
+        >
+          Svelte
+        </option>
+        <option
+          value="react"
+        >
+          React
+        </option>
+        <option
+          value="angular"
+        >
+          Angular
+        </option>
+      </select>
+       
+    </div>
+     
+    <div
+      class="field"
+    >
+      <input
+        id="macos"
+        name="os"
+        type="radio"
+        value="macos"
+      />
+       
+      <label
+        for="macos"
+      >
+        macOS
+      </label>
+      
+      <input
+        id="linux"
+        name="os"
+        type="radio"
+        value="linux"
+      />
+       
+      <label
+        for="linux"
+      >
+        Linux 🐧
+      </label>
+      
+      <input
+        id="windows"
+        name="os"
+        type="radio"
+        value="windows"
+      />
+       
+      <label
+        for="windows"
+      >
+        Windows
+      </label>
+      
+       
+    </div>
+     
+    <button
+      type="submit"
+    >
+      Sign in
+    </button>
+  </form>
+</div>
+`;

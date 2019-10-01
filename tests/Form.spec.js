@@ -44,14 +44,20 @@ describe('Form', () => {
   it('registers fields and sets default values', async () => {
     const { component } = render(App);
 
-    expect(component.form.$$.ctx.$values).toEqual({ email: '', language: '' });
+    expect(component.form.$$.ctx.$values).toEqual({
+      email: '',
+      language: '',
+      os: '',
+    });
     expect(component.form.$$.ctx.$touched).toEqual({
       email: false,
       language: false,
+      os: false,
     });
     expect(component.form.$$.ctx.$errors).toEqual({
       email: null,
       language: null,
+      os: null,
     });
   });
 
@@ -63,6 +69,7 @@ describe('Form', () => {
     expect(component.form.$$.ctx.$values).toEqual({
       email: 'test@user.com',
       language: '',
+      os: '',
     });
   });
 
@@ -84,62 +91,6 @@ describe('Form', () => {
 
   it('matches snapshot', async () => {
     const { container } = render(App);
-    expect(container.firstChild).toMatchInlineSnapshot(`
-      <div>
-        <form
-          class="sveltejs-forms"
-        >
-          <div
-            class="field"
-          >
-            <input
-              name="email"
-              placeholder="Email"
-              type="text"
-            />
-             
-          </div>
-           
-           
-          <button>
-            Show
-          </button>
-           
-          <div
-            class="field"
-          >
-            <select
-              name="language"
-            >
-              <option
-                value=""
-              />
-              <option
-                value="svelte"
-              >
-                Svelte
-              </option>
-              <option
-                value="react"
-              >
-                React
-              </option>
-              <option
-                value="angular"
-              >
-                Angular
-              </option>
-            </select>
-             
-          </div>
-           
-          <button
-            type="submit"
-          >
-            Sign in
-          </button>
-        </form>
-      </div>
-    `);
+    expect(container.firstChild).toMatchSnapshot();
   });
 });
