@@ -17,17 +17,17 @@
   const isSubmitting = writable(false);
 
   setContext(FORM, {
-    registerInput: name => {
+    registerField: name => {
       $values[name] = initialValues[name] || '';
       $touched[name] = false;
       $errors[name] = null;
     },
-    unregisterInput: name => {
+    unregisterField: name => {
       delete $values[name];
       delete $touched[name];
       delete $errors[name];
     },
-    handleChange,
+    touchField,
     values,
     errors,
     touched,
@@ -62,8 +62,10 @@
     }
   }
 
-  function handleChange(name, value) {
-    $values[name] = value;
+  function touchField(name, value) {
+    if (value) {
+      $values[name] = value;
+    }
     $touched[name] = true;
 
     if (schema) {
