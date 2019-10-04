@@ -16,23 +16,33 @@
   const touched = writable({});
   const isSubmitting = writable(false);
 
+  let isValid;
+
   setContext(FORM, {
-    registerField: name => {
-      $values[name] = initialValues[name] || '';
-      $touched[name] = false;
-      $errors[name] = null;
-    },
-    unregisterField: name => {
-      delete $values[name];
-      delete $touched[name];
-      delete $errors[name];
-    },
+    registerField,
+    unregisterField,
     touchField,
+    setValue,
+    validate,
     values,
     errors,
     touched,
     isSubmitting,
   });
+
+  function registerField(name) {
+    $values[name] = initialValues[name] || '';
+    $touched[name] = false;
+    $errors[name] = null;
+    validate();
+  }
+
+  function unregisterField(name) {
+    delete $values[name];
+    delete $touched[name];
+    delete $errors[name];
+    validate();
+  }
 
   function resetForm() {
     Object.keys($values).forEach(name => {
@@ -41,9 +51,14 @@
       $touched[name] = false;
     });
     $validatedValues = {};
+    validate();
   }
 
   async function validate() {
+    if (!schema) {
+      isValid = true;
+      return;
+    }
     try {
       $validatedValues = await schema.validate(
         { ...$values },
@@ -53,33 +68,28 @@
         }
       );
       $errors = {};
-      return true;
+      isValid = true;
     } catch (err) {
       $errors = {};
       err.inner.forEach(error => {
         $errors[error.path] = error.message;
       });
+      isValid = false;
     }
   }
 
-  function touchField(name, value) {
-    if (value) {
-      $values[name] = value;
-    }
+  function touchField(name) {
     $touched[name] = true;
+  }
 
-    if (schema) {
-      validate();
-    }
+  function setValue(name, value) {
+    $values[name] = value;
   }
 
   async function handleSubmit() {
-    let isValid = false;
     Object.keys($values).forEach(name => ($touched[name] = true));
 
-    if (schema) {
-      isValid = await validate();
-    }
+    await validate();
     if (!schema || isValid) {
       $isSubmitting = true;
       dispatch('submit', {
@@ -92,5 +102,5 @@
 </script>
 
 <form on:submit|preventDefault={handleSubmit} class="sveltejs-forms">
-  <slot isSubmitting={$isSubmitting} />
+  <slot isSubmitting={$isSubmitting} {isValid} />
 </form>

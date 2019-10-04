@@ -102,3 +102,167 @@ exports[`Form matches snapshot 1`] = `
   </form>
 </div>
 `;
+
+exports[`Form onSubmit event returns values, resetForm, setSubmitting 1`] = `
+Object {
+  "email": "test@user.com",
+  "language": "svelte",
+  "os": "macos",
+}
+`;
+
+exports[`Form onSubmit event returns values, resetForm, setSubmitting 2`] = `
+Object {
+  "email": "test@user.com",
+  "language": "svelte",
+  "os": "macos",
+}
+`;
+
+exports[`Form onSubmit event returns values, resetForm, setSubmitting 3`] = `
+Object {
+  "email": null,
+  "language": null,
+  "os": null,
+}
+`;
+
+exports[`Form onSubmit event returns values, resetForm, setSubmitting 4`] = `
+Object {
+  "email": true,
+  "language": true,
+  "os": true,
+}
+`;
+
+exports[`Form onSubmit event returns values, resetForm, setSubmitting 5`] = `
+Object {
+  "email": "",
+  "language": "",
+  "os": "",
+}
+`;
+
+exports[`Form onSubmit event returns values, resetForm, setSubmitting 6`] = `
+Object {
+  "email": null,
+  "language": null,
+  "os": null,
+}
+`;
+
+exports[`Form onSubmit event returns values, resetForm, setSubmitting 7`] = `
+Object {
+  "email": false,
+  "language": false,
+  "os": false,
+}
+`;
+
+exports[`Form shows error message when schema is defined 1`] = `
+<div>
+  <form
+    class="sveltejs-forms"
+  >
+    <div
+      class="field error"
+    >
+      <input
+        name="email"
+        placeholder="Email"
+        type="text"
+      />
+       
+      <div
+        class="message"
+      >
+        email must be a valid email
+      </div>
+    </div>
+     
+     
+    <button>
+      Show
+    </button>
+     
+    <div
+      class="field"
+    >
+      <select
+        name="language"
+      >
+        <option
+          value=""
+        />
+        <option
+          value="svelte"
+        >
+          Svelte
+        </option>
+        <option
+          value="react"
+        >
+          React
+        </option>
+        <option
+          value="angular"
+        >
+          Angular
+        </option>
+      </select>
+       
+    </div>
+     
+    <div
+      class="field"
+    >
+      <input
+        id="macos"
+        name="os"
+        type="radio"
+        value="macos"
+      />
+       
+      <label
+        for="macos"
+      >
+        macOS
+      </label>
+      
+      <input
+        id="linux"
+        name="os"
+        type="radio"
+        value="linux"
+      />
+       
+      <label
+        for="linux"
+      >
+        Linux 🐧
+      </label>
+      
+      <input
+        id="windows"
+        name="os"
+        type="radio"
+        value="windows"
+      />
+       
+      <label
+        for="windows"
+      >
+        Windows
+      </label>
+      
+       
+    </div>
+     
+    <button
+      type="submit"
+    >
+      Sign in
+    </button>
+  </form>
+</div>
+`;

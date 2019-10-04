@@ -31,7 +31,7 @@
       .email(),
     password: yup.string().min(4),
     language: yup.string().required(),
-    os: yup.string(),
+    os: yup.string().required(),
   });
 
   const langOptions = [
@@ -56,24 +56,34 @@
     background-color: lightgray;
     display: inline-block;
     padding: 1rem;
-
     .field {
       margin-bottom: 1rem;
-    }
-
-    .error {
-      margin-top: 0.2rem;
-      color: red;
-      font-size: 0.8rem;
+      &.error {
+        input,
+        select {
+          border: 1px solid red;
+        }
+        .message {
+          margin-top: 0.2rem;
+          color: red;
+          font-size: 0.8rem;
+        }
+      }
     }
   }
 </style>
 
-<Form {schema} {initialValues} on:submit={handleSubmit} let:isSubmitting>
+<Form
+  {schema}
+  {initialValues}
+  on:submit={handleSubmit}
+  let:isSubmitting
+  let:isValid>
   <Input name="email" placeholder="Email" />
-  <Input name="password" type="password" placeholder="Password" />
+  <Input name="password" type="password" placeholder="Password" multiline />
   <Select name="language" options={langOptions} />
   <Choice name="os" options={osOptions} multiple />
 
   <button type="submit" disabled={isSubmitting}>Sign in</button>
+  The form is valid: {isValid}
 </Form>
