@@ -11,6 +11,8 @@
     registerField,
     unregisterField,
     touchField,
+    setValue,
+    validate,
     values,
     errors,
     touched,
@@ -23,22 +25,35 @@
   });
 
   function onChange(event) {
-    touchField(name, event.target.value);
+    touchField(name);
+    setValue(name, event.target.value);
+    validate();
+  }
+
+  function onInput(event) {
+    setValue(name, event.target.value);
+    validate();
   }
 </script>
 
-<div class="field">
+<div class="field" class:error={$touched[name] && $errors[name]}>
   {#if multiline}
-    <textarea {name} {placeholder} value={$values[name]} on:change={onChange} />
+    <textarea
+      {name}
+      {placeholder}
+      value={$values[name]}
+      on:input={onInput}
+      on:change={onChange} />
   {:else}
     <input
       {name}
       {type}
       {placeholder}
       value={$values[name]}
+      on:input={onInput}
       on:change={onChange} />
   {/if}
   {#if $touched[name] && $errors[name]}
-    <div class="error">{$errors[name]}</div>
+    <div class="message">{$errors[name]}</div>
   {/if}
 </div>
