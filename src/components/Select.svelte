@@ -9,6 +9,7 @@
     registerField,
     unregisterField,
     touchField,
+    validate,
     values,
     errors,
     touched,
@@ -22,10 +23,11 @@
 
   function onChange() {
     touchField(name);
+    validate();
   }
 </script>
 
-<div class="field">
+<div class="field" class:error={$touched[name] && $errors[name]}>
   <select {name} bind:value={$values[name]} on:change={onChange}>
     <option value="" />
     {#each options as option}
@@ -33,6 +35,6 @@
     {/each}
   </select>
   {#if $touched[name] && $errors[name]}
-    <div class="error">{$errors[name]}</div>
+    <div class="message">{$errors[name]}</div>
   {/if}
 </div>
