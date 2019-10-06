@@ -2,7 +2,7 @@
   "name": "sveltejs-forms",
   "description": "Declarative forms for Svelte",
   "homepage": "https://mdauner.github.io/sveltejs-forms/",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "license": "MIT",
   "repository": "github:mdauner/sveltejs-forms",
   "svelte": "src/components/components.module.js",
