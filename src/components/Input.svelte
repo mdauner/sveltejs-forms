@@ -16,6 +16,8 @@
     values,
     errors,
     touched,
+    validateOnBlur,
+    validateOnChange,
   } = getContext(FORM);
 
   registerField(name);
@@ -25,14 +27,19 @@
   });
 
   function onChange(event) {
-    touchField(name);
     setValue(name, event.target.value);
-    validate();
+    touchField(name);
+
+    if (validateOnChange) {
+      validate();
+    }
   }
 
-  function onInput(event) {
-    setValue(name, event.target.value);
-    validate();
+  function onBlur() {
+    if (validateOnBlur) {
+      touchField(name);
+      validate();
+    }
   }
 </script>
 
@@ -42,7 +49,7 @@
       {name}
       {placeholder}
       value={$values[name]}
-      on:input={onInput}
+      on:blur={onBlur}
       on:change={onChange} />
   {:else}
     <input
@@ -50,7 +57,7 @@
       {type}
       {placeholder}
       value={$values[name]}
-      on:input={onInput}
+      on:blur={onBlur}
       on:change={onChange} />
   {/if}
   {#if $touched[name] && $errors[name]}

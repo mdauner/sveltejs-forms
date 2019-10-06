@@ -1,7 +1,7 @@
 import App from './TestApp.svelte';
 import { fireEvent, wait } from '@testing-library/svelte';
 import * as yup from 'yup';
-import { render } from './utils';
+import { render } from '../utils';
 
 describe('Form', () => {
   it('click on submit button dispatches submit event and sets isSubmitting to true', async () => {
@@ -44,7 +44,7 @@ describe('Form', () => {
             expect(component.form.$$.ctx.$errors).toMatchSnapshot();
             expect(component.form.$$.ctx.$touched).toMatchSnapshot();
 
-            done()
+            done();
           }
         ),
       },
@@ -78,7 +78,12 @@ describe('Form', () => {
         .required()
         .email(),
     });
-    const { container, component, getByPlaceholderText, getByText } = await render(App, {
+    const {
+      container,
+      component,
+      getByPlaceholderText,
+      getByText,
+    } = await render(App, {
       props: { schema },
     });
     const emailInput = getByPlaceholderText('Email');
@@ -86,6 +91,7 @@ describe('Form', () => {
     await fireEvent.change(emailInput, {
       target: { value: 'invalid value' },
     });
+    await fireEvent.blur(emailInput);
     await wait(() => {
       expect(getByText('email must be a valid email')).toBeInTheDocument();
     });
@@ -109,27 +115,11 @@ describe('Form', () => {
       language: false,
       os: false,
     });
-    expect(component.form.$$.ctx.$errors).toEqual({
-      email: null,
-      language: null,
-      os: null,
-    });
   });
 
-  it('isValid is true when no schema is given', async () => {
+  it('isValid is undefined initially', async () => {
     const { component } = await render(App);
-    expect(component.form.$$.ctx.isValid).toBe(true);
-  });
-
-  it('validates registered fields and sets isValid', async () => {
-    const schema = yup.object().shape({
-      email: yup
-        .string()
-        .required()
-        .email(),
-    });
-    const { component } = await render(App, { props: { schema } });
-    expect(component.form.$$.ctx.isValid).toBe(false);
+    expect(component.form.$$.ctx.isValid).toBe(undefined);
   });
 
   it('sets initial values', async () => {

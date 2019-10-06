@@ -45,10 +45,6 @@
     { id: 'linux', title: 'Linux 🐧' },
     { id: 'windows', title: 'Windows' },
   ];
-
-  const initialValues = {
-    language: 'svelte',
-  };
 </script>
 
 <style lang="scss">
@@ -75,7 +71,8 @@
 
 <Form
   {schema}
-  {initialValues}
+  validateOnChange={true}
+  validateOnBlur={false}
   on:submit={handleSubmit}
   let:isSubmitting
   let:isValid>

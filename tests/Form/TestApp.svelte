@@ -4,7 +4,7 @@
     Input,
     Select,
     Choice,
-  } from '../src/components/components.module.js';
+  } from '../../src/components/components.module.js';
 
   export let onSubmit = () => {};
   export let schema = null;
@@ -28,6 +28,8 @@
 <Form
   {schema}
   {initialValues}
+  validateOnBlur={false}
+  validateOnChange={true}
   on:submit={onSubmit}
   let:isSubmitting
   bind:this={form}>

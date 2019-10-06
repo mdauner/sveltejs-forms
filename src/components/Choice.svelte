@@ -14,6 +14,8 @@
     values,
     errors,
     touched,
+    validateOnBlur,
+    validateOnChange,
   } = getContext(FORM);
 
   registerField(name);
@@ -24,7 +26,17 @@
 
   function onChange() {
     touchField(name);
-    validate();
+
+    if (validateOnChange) {
+      validate();
+    }
+  }
+
+  function onBlur() {
+    if (validateOnBlur) {
+      touchField(name);
+      validate();
+    }
   }
 </script>
 
@@ -36,6 +48,7 @@
         type="checkbox"
         {name}
         on:change={onChange}
+        on:blur={onBlur}
         bind:group={$values[name]}
         value={option.id} />
     {:else}
@@ -44,6 +57,7 @@
         type="radio"
         {name}
         on:change={onChange}
+        on:blur={onBlur}
         bind:group={$values[name]}
         value={option.id} />
     {/if}

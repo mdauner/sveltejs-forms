@@ -6,6 +6,4 @@ async function renderAndWait(component, options) {
   return renderedComponent;
 }
 
-export {
-  renderAndWait as render
-}
+export { renderAndWait as render };

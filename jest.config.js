@@ -4,6 +4,7 @@ module.exports = {
     '^.+\\.svelte$': 'jest-transform-svelte',
   },
   moduleFileExtensions: ['js', 'svelte'],
+  roots: ['<rootDir>/tests'],
   bail: false,
   verbose: false,
   collectCoverage: true,
