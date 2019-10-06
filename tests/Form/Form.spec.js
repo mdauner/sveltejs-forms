@@ -71,6 +71,58 @@ describe('Form', () => {
     await fireEvent.click(signInButton);
   });
 
+  it('resetForm resets values to initialValues', async done => {
+    const { component, getByText, getByPlaceholderText } = await render(App, {
+      props: {
+        initialValues: {
+          email: 'initial@value.com',
+        },
+        onSubmit: jest.fn(({ detail: { resetForm } }) => {
+          expect(component.form.$$.ctx.$values.email).toEqual('test@user.com');
+          resetForm();
+          expect(component.form.$$.ctx.$values.email).toEqual('initial@value.com');
+
+          done();
+        }),
+      },
+    });
+
+    const emailInput = getByPlaceholderText('Email');
+    await fireEvent.change(emailInput, {
+      target: { value: 'test@user.com' },
+    });
+
+    const signInButton = getByText('Sign in');
+    await fireEvent.click(signInButton);
+  });
+
+  it('resetForm accepts optional new form data object', async done => {
+    const { component, getByText, getByPlaceholderText } = await render(App, {
+      props: {
+        initialValues: {
+          email: 'initial@value.com',
+        },
+        onSubmit: jest.fn(({ detail: { resetForm } }) => {
+          expect(component.form.$$.ctx.$values.email).toEqual('test@user.com');
+          resetForm({
+            email: 'after@reset.com',
+          });
+          expect(component.form.$$.ctx.$values.email).toEqual('after@reset.com');
+
+          done();
+        }),
+      },
+    });
+
+    const emailInput = getByPlaceholderText('Email');
+    await fireEvent.change(emailInput, {
+      target: { value: 'test@user.com' },
+    });
+
+    const signInButton = getByText('Sign in');
+    await fireEvent.click(signInButton);
+  });
+
   it('shows error message when schema is defined', async () => {
     const schema = yup.object().shape({
       email: yup

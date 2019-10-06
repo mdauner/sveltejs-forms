@@ -7,11 +7,17 @@
   } from './components/components.module.js';
   import * as yup from 'yup';
 
+  function handleReset() {
+    console.log('form has been reset');
+  }
+
   function handleSubmit({ detail: { values, setSubmitting, resetForm } }) {
     setTimeout(() => {
       console.log(values);
       setSubmitting(false);
-      resetForm();
+      resetForm({
+        email: 'test@user.com',
+      });
     }, 2000);
 
     /**
@@ -74,6 +80,7 @@
   validateOnChange={true}
   validateOnBlur={false}
   on:submit={handleSubmit}
+  on:reset={handleReset}
   let:isSubmitting
   let:isValid>
   <Input name="email" placeholder="Email" />
@@ -81,6 +88,7 @@
   <Select name="language" options={langOptions} />
   <Choice name="os" options={osOptions} multiple />
 
+  <button type="reset">Reset</button>
   <button type="submit" disabled={isSubmitting}>Sign in</button>
   The form is valid: {isValid}
 </Form>

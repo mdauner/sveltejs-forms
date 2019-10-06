@@ -36,7 +36,9 @@ $ yarn add sveltejs-forms
     setTimeout(() => {
       console.log(values);
       setSubmitting(false);
-      resetForm();
+      resetForm(
+        {email: 'after@reset.com'} // optional
+      );
     }, 2000);
 
     /**
@@ -47,6 +49,10 @@ $ yarn add sveltejs-forms
      *   os: 'osx,linux'
      * }
      */
+  }
+
+  function handleReset() {
+    console.log('form has been reset');
   }
 
   const schema = yup.object().shape({
@@ -104,6 +110,7 @@ $ yarn add sveltejs-forms
   validateOnBlur={false} <!-- optional, default: true -->
   validateOnChange={false} <!-- optional, default: true -->
   on:submit={handleSubmit}
+  on:reset={handleReset}
   let:isSubmitting
   let:isValid
 >
@@ -112,6 +119,7 @@ $ yarn add sveltejs-forms
   <Select name="language" options={langOptions} />
   <Choice name="os" options={osOptions} multiple />
 
+  <button type="reset">Reset</button>
   <button type="submit" disabled={isSubmitting}>Sign in</button>
   The form is valid: {isValid}
 </Form>

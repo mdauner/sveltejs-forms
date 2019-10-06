@@ -46,14 +46,13 @@
     validate();
   }
 
-  function resetForm() {
+  function resetForm(data) {
     Object.keys($values).forEach(name => {
-      $values[name] = initialValues[name] || '';
+      $values[name] = (data ? data[name] : initialValues[name]) || '';
       $touched[name] = false;
     });
     $errors = {};
     $validatedValues = {};
-    validate();
   }
 
   async function validate() {
@@ -88,6 +87,11 @@
     $values[name] = value;
   }
 
+  function handleResetClick() {
+    resetForm();
+    dispatch('reset');
+  }
+
   async function handleSubmit() {
     Object.keys($values).forEach(name => ($touched[name] = true));
 
@@ -103,6 +107,9 @@
   }
 </script>
 
-<form on:submit|preventDefault={handleSubmit} class="sveltejs-forms">
+<form
+  on:submit|preventDefault={handleSubmit}
+  on:reset={handleResetClick}
+  class="sveltejs-forms">
   <slot isSubmitting={$isSubmitting} {isValid} />
 </form>
