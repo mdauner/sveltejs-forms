@@ -13,6 +13,8 @@
     values,
     errors,
     touched,
+    validateOnBlur,
+    validateOnChange,
   } = getContext(FORM);
 
   registerField(name);
@@ -23,12 +25,26 @@
 
   function onChange() {
     touchField(name);
-    validate();
+
+    if (validateOnChange) {
+      validate();
+    }
+  }
+
+  function onBlur() {
+    if (validateOnBlur) {
+      touchField(name);
+      validate();
+    }
   }
 </script>
 
 <div class="field" class:error={$touched[name] && $errors[name]}>
-  <select {name} bind:value={$values[name]} on:change={onChange}>
+  <select
+    {name}
+    bind:value={$values[name]}
+    on:change={onChange}
+    on:blur={onBlur}>
     <option value="" />
     {#each options as option}
       <option value={option.id}>{option.title}</option>

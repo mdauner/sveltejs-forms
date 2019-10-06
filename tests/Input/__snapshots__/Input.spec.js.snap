@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input matches snapshot 1`] = `
+<div>
+  <form
+    class="sveltejs-forms"
+  >
+    <div
+      class="field"
+    >
+      <input
+        name="email"
+        placeholder="Email"
+        type="text"
+      />
+       
+    </div>
+     
+    <button
+      type="submit"
+    >
+      Sign in
+    </button>
+  </form>
+</div>
+`;
+
+exports[`Input renders textarea when multiline parameter is set 1`] = `
+<div>
+  <form
+    class="sveltejs-forms"
+  >
+    <div
+      class="field"
+    >
+      <textarea
+        name="email"
+        placeholder="Email"
+      />
+       
+    </div>
+     
+    <button
+      type="submit"
+    >
+      Sign in
+    </button>
+  </form>
+</div>
+`;

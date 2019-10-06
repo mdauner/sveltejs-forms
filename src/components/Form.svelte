@@ -8,6 +8,8 @@
 
   export let initialValues = {};
   export let schema = null;
+  export let validateOnChange = true;
+  export let validateOnBlur = true;
 
   const dispatch = createEventDispatcher();
   const values = writable({});
@@ -28,13 +30,13 @@
     errors,
     touched,
     isSubmitting,
+    validateOnBlur,
+    validateOnChange,
   });
 
   function registerField(name) {
     $values[name] = initialValues[name] || '';
     $touched[name] = false;
-    $errors[name] = null;
-    validate();
   }
 
   function unregisterField(name) {
@@ -47,9 +49,9 @@
   function resetForm() {
     Object.keys($values).forEach(name => {
       $values[name] = initialValues[name] || '';
-      $errors[name] = null;
       $touched[name] = false;
     });
+    $errors = {};
     $validatedValues = {};
     validate();
   }

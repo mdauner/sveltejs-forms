@@ -99,8 +99,10 @@ $ yarn add sveltejs-forms
 </style>
 
 <Form
-  {schema}
-  {initialValues}
+  {schema}  <!-- optional -->
+  {initialValues} <!-- optional -->
+  validateOnBlur={false} <!-- optional, default: true -->
+  validateOnChange={false} <!-- optional, default: true -->
   on:submit={handleSubmit}
   let:isSubmitting
   let:isValid
