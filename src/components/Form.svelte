@@ -3,8 +3,9 @@
 </script>
 
 <script>
-  import { setContext, createEventDispatcher } from 'svelte';
+  import { setContext, createEventDispatcher, onMount } from 'svelte';
   import { writable } from 'svelte/store';
+  import { createObjectWithDefaultValue } from '../utils';
 
   export let initialValues = {};
   export let schema = null;
@@ -12,17 +13,29 @@
   export let validateOnBlur = true;
 
   const dispatch = createEventDispatcher();
-  const values = writable({});
+  const values = writable(createObjectWithDefaultValue());
   const validatedValues = writable({});
   const errors = writable({});
   const touched = writable({});
   const isSubmitting = writable(false);
 
   let isValid;
+  let form;
+
+  onMount(() => {
+    new Set(
+      Array.from(form.querySelectorAll('input,textarea,select'))
+        .map(el => el.name)
+        .filter(name => !!name)
+    ).forEach(registerField);
+  });
+
+  function registerField(name) {
+    $values[name] = initialValues[name] || '';
+    $touched[name] = false;
+  }
 
   setContext(FORM, {
-    registerField,
-    unregisterField,
     touchField,
     setValue,
     validate,
@@ -33,18 +46,6 @@
     validateOnBlur,
     validateOnChange,
   });
-
-  function registerField(name) {
-    $values[name] = initialValues[name] || '';
-    $touched[name] = false;
-  }
-
-  function unregisterField(name) {
-    delete $values[name];
-    delete $touched[name];
-    delete $errors[name];
-    validate();
-  }
 
   function resetForm(data) {
     Object.keys($values).forEach(name => {
@@ -110,6 +111,7 @@
 <form
   on:submit|preventDefault={handleSubmit}
   on:reset={handleResetClick}
-  class="sveltejs-forms">
+  class="sveltejs-forms"
+  bind:this={form}>
   <slot isSubmitting={$isSubmitting} {isValid} />
 </form>

@@ -16,11 +16,6 @@ exports[`Form matches snapshot 1`] = `
        
     </div>
      
-     
-    <button>
-      Show
-    </button>
-     
     <div
       class="field"
     >
@@ -55,7 +50,7 @@ exports[`Form matches snapshot 1`] = `
       <input
         id="macos"
         name="os"
-        type="radio"
+        type="checkbox"
         value="macos"
       />
        
@@ -68,7 +63,7 @@ exports[`Form matches snapshot 1`] = `
       <input
         id="linux"
         name="os"
-        type="radio"
+        type="checkbox"
         value="linux"
       />
        
@@ -81,7 +76,7 @@ exports[`Form matches snapshot 1`] = `
       <input
         id="windows"
         name="os"
-        type="radio"
+        type="checkbox"
         value="windows"
       />
        
@@ -107,7 +102,10 @@ exports[`Form onSubmit event returns values, resetForm, setSubmitting 1`] = `
 Object {
   "email": "test@user.com",
   "language": "svelte",
-  "os": "macos",
+  "os": Array [
+    "macos",
+    "windows",
+  ],
 }
 `;
 
@@ -115,7 +113,10 @@ exports[`Form onSubmit event returns values, resetForm, setSubmitting 2`] = `
 Object {
   "email": "test@user.com",
   "language": "svelte",
-  "os": "macos",
+  "os": Array [
+    "macos",
+    "windows",
+  ],
 }
 `;
 
@@ -168,11 +169,6 @@ exports[`Form shows error message when schema is defined 1`] = `
       </div>
     </div>
      
-     
-    <button>
-      Show
-    </button>
-     
     <div
       class="field"
     >
@@ -207,7 +203,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       <input
         id="macos"
         name="os"
-        type="radio"
+        type="checkbox"
         value="macos"
       />
        
@@ -220,7 +216,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       <input
         id="linux"
         name="os"
-        type="radio"
+        type="checkbox"
         value="linux"
       />
        
@@ -233,7 +229,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       <input
         id="windows"
         name="os"
-        type="radio"
+        type="checkbox"
         value="windows"
       />
        

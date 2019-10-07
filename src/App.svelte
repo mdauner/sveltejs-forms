@@ -25,7 +25,7 @@
      *   email: 'email@example.com',
      *   password: '123456',
      *   language: 'svelte',
-     *   os: 'osx,linux'
+     *   os: ['osx', 'linux']
      * }
      */
   }

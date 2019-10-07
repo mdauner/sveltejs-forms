@@ -18,7 +18,7 @@ describe('Input', () => {
       target: { value: 'test@user.com' },
     });
 
-    expect(component.form.$$.ctx.$values).toEqual({
+    expect(component.form.$$.ctx.$values).toMatchObject({
       email: 'test@user.com',
     });
   });
