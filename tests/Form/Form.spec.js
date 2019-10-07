@@ -60,7 +60,10 @@ describe('Form', () => {
       target: { value: 'svelte' },
     });
 
-    const osChoice = getByText('macOS');
+    let osChoice = getByText('macOS');
+    await fireEvent.click(osChoice);
+
+    osChoice = getByText('Windows');
     await fireEvent.click(osChoice);
 
     const signInButton = getByText('Sign in');
@@ -80,7 +83,9 @@ describe('Form', () => {
         onSubmit: jest.fn(({ detail: { resetForm } }) => {
           expect(component.form.$$.ctx.$values.email).toEqual('test@user.com');
           resetForm();
-          expect(component.form.$$.ctx.$values.email).toEqual('initial@value.com');
+          expect(component.form.$$.ctx.$values.email).toEqual(
+            'initial@value.com'
+          );
 
           done();
         }),
@@ -107,7 +112,9 @@ describe('Form', () => {
           resetForm({
             email: 'after@reset.com',
           });
-          expect(component.form.$$.ctx.$values.email).toEqual('after@reset.com');
+          expect(component.form.$$.ctx.$values.email).toEqual(
+            'after@reset.com'
+          );
 
           done();
         }),
@@ -157,12 +164,12 @@ describe('Form', () => {
   it('registers fields and sets default values', async () => {
     const { component } = await render(App);
 
-    expect(component.form.$$.ctx.$values).toEqual({
+    expect(component.form.$$.ctx.$values).toMatchObject({
       email: '',
       language: '',
       os: '',
     });
-    expect(component.form.$$.ctx.$touched).toEqual({
+    expect(component.form.$$.ctx.$touched).toMatchObject({
       email: false,
       language: false,
       os: false,
@@ -179,27 +186,11 @@ describe('Form', () => {
       props: { initialValues: { email: 'test@user.com' } },
     });
 
-    expect(component.form.$$.ctx.$values).toEqual({
+    expect(component.form.$$.ctx.$values).toMatchObject({
       email: 'test@user.com',
       language: '',
       os: '',
     });
-  });
-
-  it('unregisters when field is removed', async () => {
-    const { component, getByText, getByPlaceholderText } = await render(App);
-
-    expect(component.form.$$.ctx.$values).not.toHaveProperty('optional');
-    let showButton = getByText('Show');
-    await showButton.click();
-    await wait(() => {
-      expect(getByPlaceholderText('Optional')).toBeInTheDocument();
-      expect(component.form.$$.ctx.$values).toHaveProperty('optional');
-    });
-
-    showButton = getByText('Hide');
-    await showButton.click();
-    expect(component.form.$$.ctx.$values).not.toHaveProperty('optional');
   });
 
   it('matches snapshot', async () => {

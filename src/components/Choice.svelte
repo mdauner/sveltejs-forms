@@ -1,5 +1,5 @@
 <script>
-  import { getContext, onDestroy } from 'svelte';
+  import { getContext } from 'svelte';
   import { FORM } from './Form.svelte';
 
   export let name;
@@ -7,8 +7,6 @@
   export let multiple = false;
 
   const {
-    registerField,
-    unregisterField,
     touchField,
     validate,
     values,
@@ -17,12 +15,6 @@
     validateOnBlur,
     validateOnChange,
   } = getContext(FORM);
-
-  registerField(name);
-
-  onDestroy(() => {
-    unregisterField(name);
-  });
 
   function onChange() {
     touchField(name);
