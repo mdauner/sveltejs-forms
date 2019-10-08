@@ -10,7 +10,6 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: ['src/components/**/*.{js,svelte}'],
   setupFilesAfterEnv: [
-    '@testing-library/svelte/cleanup-after-each',
     '@testing-library/jest-dom/extend-expect',
   ],
 };
