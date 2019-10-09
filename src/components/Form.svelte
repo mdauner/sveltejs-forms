@@ -5,7 +5,9 @@
 <script>
   import { setContext, createEventDispatcher, onMount } from 'svelte';
   import { writable } from 'svelte/store';
-  import { createObjectWithDefaultValue } from '../utils';
+  import set from 'lodash-es/set';
+  import get from 'lodash-es/get';
+  import { createObjectWithDefaultValue, deepCopy } from '../utils';
 
   export let initialValues = {};
   export let schema = null;
@@ -21,18 +23,20 @@
 
   let isValid;
   let form;
+  let fieldPaths;
 
   onMount(() => {
-    new Set(
+    fieldPaths = new Set(
       Array.from(form.querySelectorAll('input,textarea,select'))
         .map(el => el.name)
         .filter(name => !!name)
-    ).forEach(registerField);
+    );
+    fieldPaths.forEach(registerField);
   });
 
-  function registerField(name) {
-    $values[name] = initialValues[name] || '';
-    $touched[name] = false;
+  function registerField(path) {
+    $values = set($values, path, get(initialValues, path, ''));
+    $touched = set($touched, path, false);
   }
 
   setContext(FORM, {
@@ -48,9 +52,9 @@
   });
 
   function resetForm(data) {
-    Object.keys($values).forEach(name => {
-      $values[name] = (data ? data[name] : initialValues[name]) || '';
-      $touched[name] = false;
+    fieldPaths.forEach(path => {
+      $values = set($values, path, get(data ? data : initialValues, path, ''));
+      $touched = set($touched, path, false);
     });
     $errors = {};
     $validatedValues = {};
@@ -62,30 +66,27 @@
       return;
     }
     try {
-      $validatedValues = await schema.validate(
-        { ...$values },
-        {
-          abortEarly: false,
-          stripUnknown: true,
-        }
-      );
+      $validatedValues = await schema.validate(deepCopy($values), {
+        abortEarly: false,
+        stripUnknown: true,
+      });
       $errors = {};
       isValid = true;
     } catch (err) {
       $errors = {};
       err.inner.forEach(error => {
-        $errors[error.path] = error.message;
+        $errors = set($errors, error.path, error.message);
       });
       isValid = false;
     }
   }
 
-  function touchField(name) {
-    $touched[name] = true;
+  function touchField(path) {
+    $touched = set($touched, path, true);
   }
 
-  function setValue(name, value) {
-    $values[name] = value;
+  function setValue(path, value) {
+    $values = set($values, path, value);
   }
 
   function handleResetClick() {
@@ -94,8 +95,7 @@
   }
 
   async function handleSubmit() {
-    Object.keys($values).forEach(name => ($touched[name] = true));
-
+    fieldPaths.forEach(name => ($touched = set($touched, name, true)));
     await validate();
     if (!schema || isValid) {
       $isSubmitting = true;

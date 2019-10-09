@@ -1,5 +1,6 @@
 <script>
   import { getContext } from 'svelte';
+  import get from 'lodash-es/get';
   import { FORM } from './Form.svelte';
 
   export let name;
@@ -35,12 +36,12 @@
   }
 </script>
 
-<div class="field" class:error={$touched[name] && $errors[name]}>
+<div class="field" class:error={get($touched, name) && get($errors, name)}>
   {#if multiline}
     <textarea
       {name}
       {placeholder}
-      value={$values[name]}
+      value={get($values, name)}
       on:blur={onBlur}
       on:change={onChange} />
   {:else}
@@ -48,11 +49,11 @@
       {name}
       {type}
       {placeholder}
-      value={$values[name]}
+      value={get($values, name)}
       on:blur={onBlur}
       on:change={onChange} />
   {/if}
-  {#if $touched[name] && $errors[name]}
-    <div class="message">{$errors[name]}</div>
+  {#if get($touched, name) && get($errors, name)}
+    <div class="message">{get($errors, name)}</div>
   {/if}
 </div>
