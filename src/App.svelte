@@ -16,7 +16,7 @@
       console.log(values);
       setSubmitting(false);
       resetForm({
-        email: 'test@user.com',
+        user: { email: 'test@user.com' },
       });
     }, 2000);
 
@@ -31,13 +31,15 @@
   }
 
   const schema = yup.object().shape({
-    email: yup
-      .string()
-      .required()
-      .email(),
-    password: yup.string().min(4),
-    language: yup.string().required(),
-    os: yup.string().required(),
+    user: yup.object().shape({
+      email: yup
+        .string()
+        .required()
+        .email(),
+      password: yup.string().min(4),
+      language: yup.string().required(),
+      os: yup.string().required(),
+    }),
   });
 
   const langOptions = [
@@ -78,15 +80,19 @@
 <Form
   {schema}
   validateOnChange={true}
-  validateOnBlur={false}
+  validateOnBlur={true}
   on:submit={handleSubmit}
   on:reset={handleReset}
   let:isSubmitting
   let:isValid>
-  <Input name="email" placeholder="Email" />
-  <Input name="password" type="password" placeholder="Password" multiline />
-  <Select name="language" options={langOptions} />
-  <Choice name="os" options={osOptions} multiple />
+  <Input name="user.email" placeholder="Email" />
+  <Input
+    name="user.password"
+    type="password"
+    placeholder="Password"
+    multiline />
+  <Select name="user.language" options={langOptions} />
+  <Choice name="user.os" options={osOptions} />
 
   <button type="reset">Reset</button>
   <button type="submit" disabled={isSubmitting}>Sign in</button>

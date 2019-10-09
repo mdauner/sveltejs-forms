@@ -1,13 +1,17 @@
 <script>
   import { getContext } from 'svelte';
+  import get from 'lodash-es/get';
   import { FORM } from './Form.svelte';
 
   export let name;
   export let options;
   export let multiple = false;
 
+  let choiceValue = get($values, name, []);
+
   const {
     touchField,
+    setValue,
     validate,
     values,
     errors,
@@ -17,6 +21,7 @@
   } = getContext(FORM);
 
   function onChange() {
+    setValue(name, choiceValue);
     touchField(name);
 
     if (validateOnChange) {
@@ -32,7 +37,7 @@
   }
 </script>
 
-<div class="field" class:error={$touched[name] && $errors[name]}>
+<div class="field" class:error={get($touched, name) && get($errors, name)}>
   {#each options as option}
     {#if multiple}
       <input
@@ -41,7 +46,7 @@
         {name}
         on:change={onChange}
         on:blur={onBlur}
-        bind:group={$values[name]}
+        bind:group={choiceValue}
         value={option.id} />
     {:else}
       <input
@@ -50,14 +55,14 @@
         {name}
         on:change={onChange}
         on:blur={onBlur}
-        bind:group={$values[name]}
+        bind:group={choiceValue}
         value={option.id} />
     {/if}
     {#if option.title}
       <label for={option.id}>{option.title}</label>
     {/if}
   {/each}
-  {#if $touched[name] && $errors[name]}
-    <div class="message">{$errors[name]}</div>
+  {#if get($touched, name) && get($errors, name)}
+    <div class="message">{get($errors, name)}</div>
   {/if}
 </div>

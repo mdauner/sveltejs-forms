@@ -9,7 +9,7 @@ exports[`Form matches snapshot 1`] = `
       class="field"
     >
       <input
-        name="email"
+        name="user.email"
         placeholder="Email"
         type="text"
       />
@@ -100,23 +100,27 @@ exports[`Form matches snapshot 1`] = `
 
 exports[`Form onSubmit event returns values, resetForm, setSubmitting 1`] = `
 Object {
-  "email": "test@user.com",
   "language": "svelte",
   "os": Array [
     "macos",
     "windows",
   ],
+  "user": Object {
+    "email": "test@user.com",
+  },
 }
 `;
 
 exports[`Form onSubmit event returns values, resetForm, setSubmitting 2`] = `
 Object {
-  "email": "test@user.com",
   "language": "svelte",
   "os": Array [
     "macos",
     "windows",
   ],
+  "user": Object {
+    "email": "test@user.com",
+  },
 }
 `;
 
@@ -124,17 +128,21 @@ exports[`Form onSubmit event returns values, resetForm, setSubmitting 3`] = `und
 
 exports[`Form onSubmit event returns values, resetForm, setSubmitting 4`] = `
 Object {
-  "email": true,
   "language": true,
   "os": true,
+  "user": Object {
+    "email": true,
+  },
 }
 `;
 
 exports[`Form onSubmit event returns values, resetForm, setSubmitting 5`] = `
 Object {
-  "email": "",
   "language": "",
   "os": "",
+  "user": Object {
+    "email": "",
+  },
 }
 `;
 
@@ -142,9 +150,11 @@ exports[`Form onSubmit event returns values, resetForm, setSubmitting 6`] = `Obj
 
 exports[`Form onSubmit event returns values, resetForm, setSubmitting 7`] = `
 Object {
-  "email": false,
   "language": false,
   "os": false,
+  "user": Object {
+    "email": false,
+  },
 }
 `;
 
@@ -157,7 +167,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       class="field error"
     >
       <input
-        name="email"
+        name="user.email"
         placeholder="Email"
         type="text"
       />
@@ -165,7 +175,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       <div
         class="message"
       >
-        email must be a valid email
+        user.email must be a valid email
       </div>
     </div>
      

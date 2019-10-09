@@ -32,7 +32,7 @@
   on:submit={onSubmit}
   let:isSubmitting
   bind:this={form}>
-  <Input name="email" placeholder="Email" />
+  <Input name="user.email" placeholder="Email" />
   <Select name="language" options={langOptions} />
   <Choice name="os" options={osOptions} multiple />
 

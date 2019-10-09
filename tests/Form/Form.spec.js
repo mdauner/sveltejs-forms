@@ -78,12 +78,14 @@ describe('Form', () => {
     const { component, getByText, getByPlaceholderText } = await render(App, {
       props: {
         initialValues: {
-          email: 'initial@value.com',
+          user: { email: 'initial@value.com' },
         },
         onSubmit: jest.fn(({ detail: { resetForm } }) => {
-          expect(component.form.$$.ctx.$values.email).toEqual('test@user.com');
+          expect(component.form.$$.ctx.$values.user.email).toEqual(
+            'test@user.com'
+          );
           resetForm();
-          expect(component.form.$$.ctx.$values.email).toEqual(
+          expect(component.form.$$.ctx.$values.user.email).toEqual(
             'initial@value.com'
           );
 
@@ -105,14 +107,16 @@ describe('Form', () => {
     const { component, getByText, getByPlaceholderText } = await render(App, {
       props: {
         initialValues: {
-          email: 'initial@value.com',
+          user: { email: 'initial@value.com' },
         },
         onSubmit: jest.fn(({ detail: { resetForm } }) => {
-          expect(component.form.$$.ctx.$values.email).toEqual('test@user.com');
+          expect(component.form.$$.ctx.$values.user.email).toEqual(
+            'test@user.com'
+          );
           resetForm({
-            email: 'after@reset.com',
+            user: { email: 'after@reset.com' },
           });
-          expect(component.form.$$.ctx.$values.email).toEqual(
+          expect(component.form.$$.ctx.$values.user.email).toEqual(
             'after@reset.com'
           );
 
@@ -132,10 +136,12 @@ describe('Form', () => {
 
   it('shows error message when schema is defined', async () => {
     const schema = yup.object().shape({
-      email: yup
-        .string()
-        .required()
-        .email(),
+      user: yup.object().shape({
+        email: yup
+          .string()
+          .required()
+          .email(),
+      }),
     });
     const {
       container,
@@ -152,10 +158,10 @@ describe('Form', () => {
     });
     await fireEvent.blur(emailInput);
     await wait(() => {
-      expect(getByText('email must be a valid email')).toBeInTheDocument();
+      expect(getByText('user.email must be a valid email')).toBeInTheDocument();
     });
     expect(component.form.$$.ctx.$errors).toEqual({
-      email: 'email must be a valid email',
+      user: { email: 'user.email must be a valid email' },
     });
 
     expect(container.firstChild).toMatchSnapshot();
@@ -165,12 +171,12 @@ describe('Form', () => {
     const { component } = await render(App);
 
     expect(component.form.$$.ctx.$values).toMatchObject({
-      email: '',
+      user: { email: '' },
       language: '',
       os: '',
     });
     expect(component.form.$$.ctx.$touched).toMatchObject({
-      email: false,
+      user: { email: false },
       language: false,
       os: false,
     });
@@ -183,11 +189,11 @@ describe('Form', () => {
 
   it('sets initial values', async () => {
     const { component } = await render(App, {
-      props: { initialValues: { email: 'test@user.com' } },
+      props: { initialValues: { user: { email: 'test@user.com' } } },
     });
 
     expect(component.form.$$.ctx.$values).toMatchObject({
-      email: 'test@user.com',
+      user: { email: 'test@user.com' },
       language: '',
       os: '',
     });

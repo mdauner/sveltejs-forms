@@ -36,17 +36,19 @@ $ yarn add sveltejs-forms
     setTimeout(() => {
       console.log(values);
       setSubmitting(false);
-      resetForm(
-        {email: 'after@reset.com'} // optional
-      );
+      resetForm({
+        user: { email: 'test@user.com' }, // optional
+      });
     }, 2000);
 
     /**
      * {
-     *   email: 'email@example.com',
+     *   user: {
+     *    email: 'email@example.com'
+     *   },
      *   password: '123456',
      *   language: 'svelte',
-     *   os: ['osx', 'linux']
+     *   os: 'osx,linux'
      * }
      */
   }
@@ -56,10 +58,12 @@ $ yarn add sveltejs-forms
   }
 
   const schema = yup.object().shape({
-    email: yup
-      .string()
-      .required()
-      .email(),
+    user: yup.object().shape({
+      email: yup
+        .string()
+        .required()
+        .email(),
+    }),
     password: yup.string().min(4),
     language: yup.string().required(),
     os: yup.string(),
@@ -114,7 +118,7 @@ $ yarn add sveltejs-forms
   let:isSubmitting
   let:isValid
 >
-  <Input name="email" placeholder="Email" />
+  <Input name="user.email" placeholder="Email" /> <!-- nested field -->
   <Input name="password" type="password" placeholder="Password" />
   <Select name="language" options={langOptions} />
   <Choice name="os" options={osOptions} multiple />

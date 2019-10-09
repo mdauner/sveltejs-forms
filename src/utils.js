@@ -10,3 +10,7 @@ export function createObjectWithDefaultValue(defaultValue = '') {
     }
   );
 }
+
+export function deepCopy(src) {
+  return JSON.parse(JSON.stringify(src));
+}
