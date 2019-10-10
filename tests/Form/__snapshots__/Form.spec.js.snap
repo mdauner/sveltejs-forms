@@ -124,7 +124,7 @@ Object {
 }
 `;
 
-exports[`Form onSubmit event returns values, resetForm, setSubmitting 3`] = `undefined`;
+exports[`Form onSubmit event returns values, resetForm, setSubmitting 3`] = `Object {}`;
 
 exports[`Form onSubmit event returns values, resetForm, setSubmitting 4`] = `
 Object {
@@ -139,7 +139,7 @@ Object {
 exports[`Form onSubmit event returns values, resetForm, setSubmitting 5`] = `
 Object {
   "language": "",
-  "os": "",
+  "os": Array [],
   "user": Object {
     "email": "",
   },

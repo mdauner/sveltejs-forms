@@ -1,10 +1,12 @@
 module.exports = {
   transform: {
-    '^.+\\.js$': 'babel-jest',
+    '^.+\\.m?js$': 'babel-jest',
     '^.+\\.svelte$': 'jest-transform-svelte',
   },
-  transformIgnorePatterns: ['/node_modules/(?!lodash-es).+\\.js$'],
-  moduleFileExtensions: ['js', 'svelte'],
+  transformIgnorePatterns: [
+    '/node_modules/(?!(lodash-es|svelte-writable-derived)).+\\.m?js$',
+  ],
+  moduleFileExtensions: ['js', 'svelte', 'mjs'],
   roots: ['<rootDir>/tests'],
   bail: false,
   verbose: false,

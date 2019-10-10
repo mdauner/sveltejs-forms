@@ -23,21 +23,24 @@
 
   let isValid;
   let form;
-  let fieldPaths;
+  let fields;
 
   onMount(() => {
-    fieldPaths = new Set(
-      Array.from(form.querySelectorAll('input,textarea,select'))
-        .map(el => el.name)
-        .filter(name => !!name)
-    );
-    fieldPaths.forEach(registerField);
-  });
+    fields = Array.from(form.querySelectorAll('input,textarea,select'))
+      .filter(el => !!el.name)
+      .map(el => ({ path: el.name }))
+      .reduce((allElements, currentElement) => {
+        const isCurrentElement = el => el.path === currentElement.path;
+        const multiple = !!allElements.find(isCurrentElement);
 
-  function registerField(path) {
-    $values = set($values, path, get(initialValues, path, ''));
-    $touched = set($touched, path, false);
-  }
+        return [
+          ...allElements.filter(el => !isCurrentElement(el)),
+          { ...currentElement, multiple },
+        ];
+      }, []);
+
+    resetForm();
+  });
 
   setContext(FORM, {
     touchField,
@@ -52,12 +55,17 @@
   });
 
   function resetForm(data) {
-    fieldPaths.forEach(path => {
-      $values = set($values, path, get(data ? data : initialValues, path, ''));
+    fields.forEach(({ path, multiple }) => {
+      $values = set(
+        $values,
+        path,
+        get(data ? data : initialValues, path, multiple ? [] : '')
+      );
       $touched = set($touched, path, false);
     });
     $errors = {};
     $validatedValues = {};
+    isValid = undefined;
   }
 
   async function validate() {
@@ -95,7 +103,7 @@
   }
 
   async function handleSubmit() {
-    fieldPaths.forEach(name => ($touched = set($touched, name, true)));
+    fields.forEach(({ path }) => ($touched = set($touched, path, true)));
     await validate();
     if (!schema || isValid) {
       $isSubmitting = true;

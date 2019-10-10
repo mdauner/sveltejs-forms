@@ -52,7 +52,8 @@
     "yup": "0.27.0"
   },
   "dependencies": {
-    "lodash-es": "^4.17.15"
+    "lodash-es": "^4.17.15",
+    "svelte-writable-derived": "^2.0.1"
   },
   "scripts": {
     "prettier": "prettier --check '**/*.{svelte, html, css, scss, stylus, js, ts, json, yml, md}' --plugin-search-dir=.",

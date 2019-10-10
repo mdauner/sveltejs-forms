@@ -1,17 +1,16 @@
 <script>
   import { getContext } from 'svelte';
   import get from 'lodash-es/get';
+  import set from 'lodash-es/set';
+  import writableDerived from 'svelte-writable-derived';
   import { FORM } from './Form.svelte';
 
   export let name;
   export let options;
   export let multiple = false;
 
-  let choiceValue = get($values, name, []);
-
   const {
     touchField,
-    setValue,
     validate,
     values,
     errors,
@@ -20,8 +19,13 @@
     validateOnChange,
   } = getContext(FORM);
 
+  const choice = writableDerived(
+    values,
+    $values => get($values, name, multiple ? [] : ''),
+    newValue => set($values, name, newValue)
+  );
+
   function onChange() {
-    setValue(name, choiceValue);
     touchField(name);
 
     if (validateOnChange) {
@@ -46,7 +50,7 @@
         {name}
         on:change={onChange}
         on:blur={onBlur}
-        bind:group={choiceValue}
+        bind:group={$choice}
         value={option.id} />
     {:else}
       <input
@@ -55,7 +59,7 @@
         {name}
         on:change={onChange}
         on:blur={onBlur}
-        bind:group={choiceValue}
+        bind:group={$choice}
         value={option.id} />
     {/if}
     {#if option.title}

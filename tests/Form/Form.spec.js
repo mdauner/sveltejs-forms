@@ -173,7 +173,7 @@ describe('Form', () => {
     expect(component.form.$$.ctx.$values).toMatchObject({
       user: { email: '' },
       language: '',
-      os: '',
+      os: [],
     });
     expect(component.form.$$.ctx.$touched).toMatchObject({
       user: { email: false },
@@ -195,7 +195,7 @@ describe('Form', () => {
     expect(component.form.$$.ctx.$values).toMatchObject({
       user: { email: 'test@user.com' },
       language: '',
-      os: '',
+      os: [],
     });
   });
 
