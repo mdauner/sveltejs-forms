@@ -19,15 +19,6 @@
         user: { email: 'test@user.com' },
       });
     }, 2000);
-
-    /**
-     * {
-     *   email: 'email@example.com',
-     *   password: '123456',
-     *   language: 'svelte',
-     *   os: ['osx', 'linux']
-     * }
-     */
   }
 
   const schema = yup.object().shape({
@@ -38,7 +29,10 @@
         .email(),
       password: yup.string().min(4),
       language: yup.string().required(),
-      os: yup.string().required(),
+      os: yup
+        .array()
+        .of(yup.string().required())
+        .min(2),
     }),
   });
 
@@ -92,7 +86,7 @@
     placeholder="Password"
     multiline />
   <Select name="user.language" options={langOptions} />
-  <Choice name="user.os" options={osOptions} />
+  <Choice name="user.os" options={osOptions} multiple />
 
   <button type="reset">Reset</button>
   <button type="submit" disabled={isSubmitting}>Sign in</button>

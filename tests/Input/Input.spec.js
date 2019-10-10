@@ -58,7 +58,7 @@ describe('Input', () => {
     });
     await wait();
 
-    expect(component.form.$$.ctx.$errors).toEqual(undefined);
+    expect(component.form.$$.ctx.$errors).toEqual({});
   });
 
   it('validates on blur if validateOnBlur is true', async () => {
@@ -97,7 +97,7 @@ describe('Input', () => {
     });
     await fireEvent.blur(emailInput);
     await wait();
-    expect(component.form.$$.ctx.$errors).toEqual(undefined);
+    expect(component.form.$$.ctx.$errors).toEqual({});
   });
 
   it('matches snapshot', async () => {
