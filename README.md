@@ -14,6 +14,8 @@ Declarative forms for [Svelte](https://svelte.dev/).
 
 - optional schema-based validation through [Yup](https://github.com/jquense/yup)
 - access to nested properties using paths
+- supports custom components
+- provides `Input`, `Select`, `Choice` components to reduce boilerplate
 
 ## Install
 
@@ -29,7 +31,7 @@ $ yarn add sveltejs-forms
 
 ## How to use
 
-### Example
+### With provided `Input`, `Select`, `Choice` helper components
 
 ```html
 <script>
@@ -132,3 +134,84 @@ $ yarn add sveltejs-forms
   The form is valid: {isValid}
 </Form>
 ```
+
+### With custom component:
+
+```html
+<script>
+  import { Form } from 'sveltejs-forms';
+  import Select from 'svelte-select';
+  import * as yup from 'yup';
+
+  let svelteSelect;
+
+  function handleSubmit({ detail: { values, setSubmitting, resetForm } }) {
+    setTimeout(() => {
+      console.log(values);
+      setSubmitting(false);
+      svelteSelect.handleClear();
+      resetForm();
+    }, 2000);
+  }
+
+  const schema = yup.object().shape({
+    food: yup
+      .array()
+      .of(yup.string().required())
+      .min(2),
+  });
+
+  let items = [
+    { value: 'chocolate', label: 'Chocolate' },
+    { value: 'pizza', label: 'Pizza' },
+    { value: 'cake', label: 'Cake' },
+    { value: 'chips', label: 'Chips' },
+    { value: 'ice-cream', label: 'Ice Cream' },
+  ];
+</script>
+
+<Form
+  {schema}
+  on:submit={handleSubmit}
+  let:setValue
+  let:validate
+  let:values
+  let:errors
+  let:touched>
+
+  <Select
+    {items}
+    isMulti={true}
+    bind:this={svelteSelect}
+    inputAttributes="{{ name: 'food' }}"
+    hasError="{touched['food'] && errors['food']}"
+    on:select="{({ detail }) => {
+      setValue('food', detail && detail.map(item => item.value));
+      validate();
+    }}"
+    on:clear="{() => {
+      setValue('food', []);
+      validate();
+    }}"
+    selectedValue="{items.filter(item => values['food'].includes(item.value))}" />
+
+  <button type="submit">Sign in</button>
+</Form>
+```
+
+## Slot props
+
+| Name | Type |
+|------|------|
+| isSubmitting | `boolean`
+| isValid | `boolean`
+| setValue(path, value) | `function`
+| touchField(path) | `function`
+| validate() | `function`
+| values |  `object`
+| errors |  `object`
+| touched |  `object`
+
+## Contributions
+
+**All contributions (no matter if small) are always welcome.**
