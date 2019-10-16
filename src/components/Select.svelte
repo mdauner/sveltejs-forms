@@ -6,31 +6,14 @@
   export let name;
   export let options;
 
-  const {
-    touchField,
-    setValue,
-    validate,
-    values,
-    errors,
-    touched,
-    validateOnBlur,
-    validateOnChange,
-  } = getContext(FORM);
+  const { touchField, setValue, values, errors, touched } = getContext(FORM);
 
   function onChange(event) {
     setValue(name, event.target.value);
-    touchField(name);
-
-    if (validateOnChange) {
-      validate();
-    }
   }
 
   function onBlur() {
-    if (validateOnBlur) {
-      touchField(name);
-      validate();
-    }
+    touchField(name);
   }
 </script>
 

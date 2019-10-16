@@ -89,12 +89,20 @@
     }
   }
 
-  function touchField(path) {
-    $touched = set($touched, path, true);
+  function touchField(path, shouldValidate = false) {
+    if (validateOnBlur || shouldValidate) {
+      $touched = set($touched, path, true);
+      validate();
+    }
   }
 
   function setValue(path, value) {
     $values = set($values, path, value);
+    $touched = set($touched, path, true);
+
+    if (validateOnChange) {
+      validate();
+    }
   }
 
   function handleResetClick() {
@@ -121,5 +129,13 @@
   on:reset={handleResetClick}
   class="sveltejs-forms"
   bind:this={form}>
-  <slot isSubmitting={$isSubmitting} {isValid} />
+  <slot
+    isSubmitting={$isSubmitting}
+    {isValid}
+    {setValue}
+    {touchField}
+    {validate}
+    values={$values}
+    errors={$errors}
+    touched={$touched} />
 </form>

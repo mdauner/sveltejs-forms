@@ -9,15 +9,9 @@
   export let options;
   export let multiple = false;
 
-  const {
-    touchField,
-    validate,
-    values,
-    errors,
-    touched,
-    validateOnBlur,
-    validateOnChange,
-  } = getContext(FORM);
+  const { touchField, values, errors, touched, validateOnChange } = getContext(
+    FORM
+  );
 
   const choice = writableDerived(
     values,
@@ -26,18 +20,11 @@
   );
 
   function onChange() {
-    touchField(name);
-
-    if (validateOnChange) {
-      validate();
-    }
+    touchField(name, validateOnChange);
   }
 
   function onBlur() {
-    if (validateOnBlur) {
-      touchField(name);
-      validate();
-    }
+    touchField(name);
   }
 </script>
 
