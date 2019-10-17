@@ -206,4 +206,4 @@ $ yarn add sveltejs-forms
 
 ## Contributions
 
-**All contributions (no matter if small) are always welcome.**
+**All contributions are welcome.**
