@@ -10,6 +10,8 @@
 
 Declarative forms for [Svelte](https://svelte.dev/).
 
+[DEMO](https://svelte.dev/repl/8e7deaa261364b4f8b2c0caff1982eeb?version=3.12.1)
+
 ## Features
 
 - optional schema-based validation through [Yup](https://github.com/jquense/yup)
@@ -141,7 +143,7 @@ $ yarn add sveltejs-forms
 <script>
   import { Form } from 'sveltejs-forms';
   import Select from 'svelte-select';
-  import * as yup from 'yup';
+  import yup from 'yup';
 
   let svelteSelect;
 
@@ -155,10 +157,7 @@ $ yarn add sveltejs-forms
   }
 
   const schema = yup.object().shape({
-    food: yup
-      .array()
-      .of(yup.string().required())
-      .min(2),
+    food: yup.string().required()
   });
 
   let items = [
@@ -173,29 +172,22 @@ $ yarn add sveltejs-forms
 <Form
   {schema}
   on:submit={handleSubmit}
+  let:isSubmitting
   let:setValue
-  let:validate
   let:values
   let:errors
   let:touched>
 
   <Select
     {items}
-    isMulti={true}
     bind:this={svelteSelect}
     inputAttributes="{{ name: 'food' }}"
     hasError="{touched['food'] && errors['food']}"
-    on:select="{({ detail }) => {
-      setValue('food', detail && detail.map(item => item.value));
-      validate();
-    }}"
-    on:clear="{() => {
-      setValue('food', []);
-      validate();
-    }}"
-    selectedValue="{items.filter(item => values['food'].includes(item.value))}" />
+    on:select="{({ detail }) => setValue('food', detail.value)}"
+    on:clear="{() => setValue('food', '')}"
+    selectedValue="{items.find(item => item.value === values['food'])}"/>
 
-  <button type="submit">Sign in</button>
+  <button type="submit" disabled={isSubmitting}>Submit</button>
 </Form>
 ```
 
