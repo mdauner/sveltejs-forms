@@ -1245,6 +1245,11 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
+"@types/pug@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@types/pug/-/pug-2.0.4.tgz#8772fcd0418e3cd2cc171555d73007415051f4b2"
+  integrity sha1-h3L80EGOPNLMFxVV1zAHQVBR9LI=
+
 "@types/resolve@0.0.8":
   version "0.0.8"
   resolved "https://registry.yarnpkg.com/@types/resolve/-/resolve-0.0.8.tgz#f26074d238e02659e323ce1a13d041eee280e194"
@@ -1256,6 +1261,13 @@
   version "0.12.0"
   resolved "https://registry.yarnpkg.com/@types/retry/-/retry-0.12.0.tgz#2b35eccfcee7d38cd72ad99232fbd58bffb3c84d"
   integrity sha512-wWKOClTTiizcZhXnPY4wikVAwmdYHp8q6DmC+EJUzAMsycb7HB32Kh9RN4+0gExjmPmZSAQjgURXIGATPegAvA==
+
+"@types/sass@^1.16.0":
+  version "1.16.0"
+  resolved "https://registry.yarnpkg.com/@types/sass/-/sass-1.16.0.tgz#b41ac1c17fa68ffb57d43e2360486ef526b3d57d"
+  integrity sha512-2XZovu4NwcqmtZtsBR5XYLw18T8cBCnU2USFHTnYLLHz9fkhnoEMoDsqShJIOFsFhn5aJHjweiUUdTrDGujegA==
+  dependencies:
+    "@types/node" "*"
 
 "@types/semver@^6.0.1":
   version "6.0.2"
@@ -8668,11 +8680,13 @@ supports-hyperlinks@^1.0.1:
     has-flag "^2.0.0"
     supports-color "^5.0.0"
 
-svelte-preprocess@3.1.4:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-3.1.4.tgz#a9359da15c5f6d365ca631fecae99c4b29a42a0f"
-  integrity sha512-Tr3IsR/PqNH4xb5tD1gryTBp7obD1baOi3IoUFdO2V6fCb0gQOFpp3hSbLtKpZZkRosH5sUPa8T1yNqMzrAKbQ==
+svelte-preprocess@3.2.2:
+  version "3.2.2"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-3.2.2.tgz#bb27737f544ea9d7cf90f9d834d7eb26c4f78123"
+  integrity sha512-uGC8xOvJbwon2d6CRS/wkaqRCzAWxsCiGlvIUjK7I/16Vs9GZzQQRn9m3rrZs1RLXItdLzcz0bXrbWi7/d8Bhw==
   dependencies:
+    "@types/pug" "^2.0.4"
+    "@types/sass" "^1.16.0"
     detect-indent "^6.0.0"
     strip-indent "^2.0.0"
 
