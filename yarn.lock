@@ -8696,10 +8696,10 @@ supports-hyperlinks@^1.0.1:
     has-flag "^2.0.0"
     supports-color "^5.0.0"
 
-svelte-preprocess@3.2.2:
-  version "3.2.2"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-3.2.2.tgz#bb27737f544ea9d7cf90f9d834d7eb26c4f78123"
-  integrity sha512-uGC8xOvJbwon2d6CRS/wkaqRCzAWxsCiGlvIUjK7I/16Vs9GZzQQRn9m3rrZs1RLXItdLzcz0bXrbWi7/d8Bhw==
+svelte-preprocess@3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-3.2.6.tgz#b95ab38bc35fb536589e0f99faea0268dd89bf2b"
+  integrity sha512-gtZJBW1i8HuXPqI3Qdgwln4CX62L/2mbKiHZEeVNpV/oSYkF4uXWQKYSv1txivbB2pVJIBzp2VmDUxviHd6pxA==
   dependencies:
     "@types/pug" "^2.0.4"
     "@types/sass" "^1.16.0"
