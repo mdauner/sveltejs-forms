@@ -35,7 +35,7 @@
     "postcss-load-config": "^2.1.0",
     "prettier": "1.18.2",
     "prettier-plugin-svelte": "^0.7.0",
-    "rollup": "1.26.5",
+    "rollup": "1.27.5",
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-livereload": "1.0.4",
