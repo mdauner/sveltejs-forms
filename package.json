@@ -46,10 +46,10 @@
     "sirv-cli": "0.4.5",
     "svelte": "3.12.1",
     "svelte-preprocess": "3.2.6",
-    "yup": "0.27.0"
+    "yup": "0.28.0"
   },
   "peerDependencies": {
-    "yup": "0.27.0"
+    "yup": "0.28.0"
   },
   "dependencies": {
     "lodash-es": "^4.17.15",
