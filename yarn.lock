@@ -8864,10 +8864,10 @@ svelte-writable-derived@^2.0.1:
   resolved "https://registry.yarnpkg.com/svelte-writable-derived/-/svelte-writable-derived-2.0.1.tgz#268165145bf44c9349b153381985516c76bf4a58"
   integrity sha512-aQ0p4rpFjcfemh0mzXEzQcAbXCC9r8fnHo49Hlx/e14O2T44pJMYiuBwJcciGtDT+b8HRxikAS+DUdwJf3RIPw==
 
-svelte@3.12.1:
-  version "3.12.1"
-  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.12.1.tgz#ddfacd43272ac3255907c682b74ee7d3d8b06b0c"
-  integrity sha512-t29WJNjHIqfrdMcVXqIyRfgLEaNz7MihKXTpb8qHlbzvf0WyOOIhIlwIGvl6ahJ9+9CLJwz0sjhFNAmPgo8BHg==
+svelte@3.17.1:
+  version "3.17.1"
+  resolved "https://registry.yarnpkg.com/svelte/-/svelte-3.17.1.tgz#71aedbfb5bf831dad7b00a944f2fdded6b482184"
+  integrity sha512-IjX6agpbu01VHBaL/12oFem+ufPRyZNLkg4ay7lJl7IbUB/er90kdIsWCNZX44XaniSEhG/0Hja4GsrtufTwCw==
 
 symbol-observable@^1.1.0:
   version "1.2.0"
