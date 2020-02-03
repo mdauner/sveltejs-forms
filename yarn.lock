@@ -8849,10 +8849,10 @@ supports-hyperlinks@^1.0.1:
     has-flag "^2.0.0"
     supports-color "^5.0.0"
 
-svelte-preprocess@3.2.6:
-  version "3.2.6"
-  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-3.2.6.tgz#b95ab38bc35fb536589e0f99faea0268dd89bf2b"
-  integrity sha512-gtZJBW1i8HuXPqI3Qdgwln4CX62L/2mbKiHZEeVNpV/oSYkF4uXWQKYSv1txivbB2pVJIBzp2VmDUxviHd6pxA==
+svelte-preprocess@3.3.1:
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/svelte-preprocess/-/svelte-preprocess-3.3.1.tgz#2729e83ec90cfe28ced721d2f61e09e8b7af30a7"
+  integrity sha512-nHfkZ9eNcke1OhXJb+wX8ShYw2/kMNM/Bj/URgkGxURfkycgH/gaLDYLctp2rmpKf92+JO1848KMBQG1DbX/Zg==
   dependencies:
     "@types/pug" "^2.0.4"
     "@types/sass" "^1.16.0"
