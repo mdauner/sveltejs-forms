@@ -8,7 +8,41 @@ exports[`Input matches snapshot 1`] = `
     <div
       class="field"
     >
+       
       <input
+        id="email"
+        name="email"
+        placeholder="Email"
+        type="text"
+      />
+       
+    </div>
+     
+    <button
+      type="submit"
+    >
+      Sign in
+    </button>
+  </form>
+</div>
+`;
+
+exports[`Input renders label 1`] = `
+<div>
+  <form
+    class="sveltejs-forms"
+  >
+    <div
+      class="field"
+    >
+      <label
+        for="email"
+      >
+        Email
+      </label>
+       
+      <input
+        id="email"
         name="email"
         placeholder="Email"
         type="text"
@@ -33,7 +67,9 @@ exports[`Input renders textarea when multiline parameter is set 1`] = `
     <div
       class="field"
     >
+       
       <textarea
+        id="email"
         name="email"
         placeholder="Email"
       />

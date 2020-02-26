@@ -4,6 +4,7 @@
   import { FORM } from './Form.svelte';
 
   export let name;
+  export let label = '';
   export let type = 'text';
   export let placeholder = '';
   export let multiline = false;
@@ -20,10 +21,14 @@
 </script>
 
 <div class="field" class:error={get($touched, name) && get($errors, name)}>
+  {#if label}
+    <label for={name}>{label}</label>
+  {/if}
   {#if multiline}
     <textarea
       {name}
       {placeholder}
+      id={name}
       value={get($values, name)}
       on:blur={onBlur}
       on:change={onChange} />
@@ -32,6 +37,7 @@
       {name}
       {type}
       {placeholder}
+      id={name}
       value={get($values, name)}
       on:blur={onBlur}
       on:change={onChange} />

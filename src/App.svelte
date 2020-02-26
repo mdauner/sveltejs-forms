@@ -79,13 +79,16 @@
   on:reset={handleReset}
   let:isSubmitting
   let:isValid>
-  <Input name="user.email" placeholder="Email" />
+  <Input
+    name="user.email"
+    label="Email Address"
+    placeholder="e.g. user@example.com" />
   <Input
     name="user.password"
     type="password"
     placeholder="Password"
     multiline />
-  <Select name="user.language" options={langOptions} />
+  <Select name="user.language" label="Language" options={langOptions} />
   <Choice name="user.os" options={osOptions} multiple />
 
   <button type="reset">Reset</button>

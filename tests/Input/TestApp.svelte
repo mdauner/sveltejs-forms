@@ -8,6 +8,7 @@
   export let validateOnChange = true;
   export let form = null;
   export let multiline = false;
+  export let label = '';
 </script>
 
 <Form
@@ -18,7 +19,7 @@
   on:submit={onSubmit}
   let:isSubmitting
   bind:this={form}>
-  <Input name="email" placeholder="Email" {multiline} />
+  <Input name="email" {label} placeholder="Email" {multiline} />
 
   <button type="submit" disabled={isSubmitting}>Sign in</button>
 </Form>

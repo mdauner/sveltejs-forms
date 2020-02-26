@@ -126,7 +126,7 @@ $ yarn add sveltejs-forms
   let:isSubmitting
   let:isValid
 >
-  <Input name="user.email" placeholder="Email" /> <!-- nested field -->
+  <Input name="user.email" label="Email" placeholder="e.g. user@example.com" /> <!-- nested field -->
   <Input name="password" type="password" placeholder="Password" />
   <Select name="language" options={langOptions} />
   <Choice name="os" options={osOptions} multiple />

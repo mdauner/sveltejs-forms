@@ -8,7 +8,9 @@ exports[`Form matches snapshot 1`] = `
     <div
       class="field"
     >
+       
       <input
+        id="user.email"
         name="user.email"
         placeholder="Email"
         type="text"
@@ -19,7 +21,9 @@ exports[`Form matches snapshot 1`] = `
     <div
       class="field"
     >
+       
       <select
+        id="language"
         name="language"
       >
         <option
@@ -166,7 +170,9 @@ exports[`Form shows error message when schema is defined 1`] = `
     <div
       class="field error"
     >
+       
       <input
+        id="user.email"
         name="user.email"
         placeholder="Email"
         type="text"
@@ -182,7 +188,9 @@ exports[`Form shows error message when schema is defined 1`] = `
     <div
       class="field"
     >
+       
       <select
+        id="language"
         name="language"
       >
         <option
