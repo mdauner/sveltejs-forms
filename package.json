@@ -44,7 +44,7 @@
     "rollup-plugin-terser": "5.1.3",
     "semantic-release": "^15.13.24",
     "sirv-cli": "0.4.5",
-    "svelte": "3.12.1",
+    "svelte": "3.19.1",
     "svelte-preprocess": "3.3.1",
     "yup": "0.27.0"
   },
