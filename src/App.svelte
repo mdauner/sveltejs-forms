@@ -49,8 +49,8 @@
   ];
 </script>
 
-<style lang="scss">
-  :global(.sveltejs-forms) {
+<style lang="scss" global>
+  .sveltejs-forms {
     background-color: lightgray;
     display: inline-block;
     padding: 1rem;
