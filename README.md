@@ -2,7 +2,7 @@
 
 ![npm](https://img.shields.io/npm/v/sveltejs-forms)
 ![npm bundle size](https://img.shields.io/bundlephobia/minzip/sveltejs-forms)
-![npm](https://img.shields.io/npm/dw/sveltejs-forms)
+![npm](https://img.shields.io/npm/dm/sveltejs-forms)
 
 ![GitHub](https://img.shields.io/github/license/mdauner/sveltejs-forms)
 ![Actions Status](https://github.com/mdauner/sveltejs-forms/workflows/CI/badge.svg)
