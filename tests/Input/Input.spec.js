@@ -23,7 +23,7 @@ describe('Input', () => {
       target: { value: 'test@user.com' },
     });
 
-    expect(component.form.$$.ctx.$values).toMatchObject({
+    expect(component.form.$capture_state().$values).toMatchObject({
       email: 'test@user.com',
     });
   });
@@ -43,7 +43,7 @@ describe('Input', () => {
     });
     await wait();
 
-    expect(component.form.$$.ctx.$errors).toEqual({
+    expect(component.form.$capture_state().$errors).toEqual({
       email: 'email must be a valid email',
     });
   });
@@ -63,7 +63,7 @@ describe('Input', () => {
     });
     await wait();
 
-    expect(component.form.$$.ctx.$errors).toEqual({});
+    expect(component.form.$capture_state().$errors).toEqual({});
   });
 
   it('validates on blur if validateOnBlur is true', async () => {
@@ -82,7 +82,7 @@ describe('Input', () => {
     await fireEvent.blur(emailInput);
     await wait();
 
-    expect(component.form.$$.ctx.$errors).toEqual({
+    expect(component.form.$capture_state().$errors).toEqual({
       email: 'email must be a valid email',
     });
   });
@@ -102,7 +102,7 @@ describe('Input', () => {
     });
     await fireEvent.blur(emailInput);
     await wait();
-    expect(component.form.$$.ctx.$errors).toEqual({});
+    expect(component.form.$capture_state().$errors).toEqual({});
   });
 
   it('matches snapshot', async () => {

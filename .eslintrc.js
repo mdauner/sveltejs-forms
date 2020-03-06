@@ -16,6 +16,9 @@ module.exports = {
     'svelte3/ignore-styles': attributes =>
       attributes.lang && attributes.lang.includes('scss'),
   },
+  rules: {
+    'jest/no-test-callback': 0
+  },
   parserOptions: {
     ecmaVersion: 2019,
     sourceType: 'module',

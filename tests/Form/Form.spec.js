@@ -10,14 +10,14 @@ describe('Form', () => {
     });
     const signInButton = getByText('Sign in');
 
-    expect(component.form.$$.ctx.$isSubmitting).toBe(false);
+    expect(component.form.$capture_state().$isSubmitting).toBe(false);
     expect(signInButton).not.toHaveAttribute('disabled');
 
     await fireEvent.click(signInButton);
     await wait();
     expect(component.onSubmit).toHaveBeenCalledTimes(1);
     expect(signInButton).toHaveAttribute('disabled');
-    expect(component.form.$$.ctx.$isSubmitting).toBe(true);
+    expect(component.form.$capture_state().$isSubmitting).toBe(true);
   });
 
   it('onSubmit event returns values, resetForm, setSubmitting', async done => {
@@ -32,17 +32,20 @@ describe('Form', () => {
           ({ detail: { values, setSubmitting, resetForm } }) => {
             expect(values).toMatchSnapshot();
 
-            expect(component.form.$$.ctx.$isSubmitting).toBeTruthy();
-            setSubmitting(false);
-            expect(component.form.$$.ctx.$isSubmitting).toBeFalsy();
+            expect(component.form.$capture_state().$isSubmitting).toBeTruthy();
 
-            expect(component.form.$$.ctx.$values).toMatchSnapshot();
-            expect(component.form.$$.ctx.$errors).toMatchSnapshot();
-            expect(component.form.$$.ctx.$touched).toMatchSnapshot();
+            setSubmitting(false);
+            let formState = component.form.$capture_state();
+            expect(formState.$isSubmitting).toBeFalsy();
+            expect(formState.$values).toMatchSnapshot();
+            expect(formState.$errors).toMatchSnapshot();
+            expect(formState.$touched).toMatchSnapshot();
+
             resetForm();
-            expect(component.form.$$.ctx.$values).toMatchSnapshot();
-            expect(component.form.$$.ctx.$errors).toMatchSnapshot();
-            expect(component.form.$$.ctx.$touched).toMatchSnapshot();
+            formState = component.form.$capture_state();
+            expect(formState.$values).toMatchSnapshot();
+            expect(formState.$errors).toMatchSnapshot();
+            expect(formState.$touched).toMatchSnapshot();
 
             done();
           }
@@ -68,7 +71,7 @@ describe('Form', () => {
 
     const signInButton = getByText('Sign in');
 
-    expect(component.form.$$.ctx.$isSubmitting).toBe(false);
+    expect(component.form.$capture_state().$isSubmitting).toBe(false);
     expect(signInButton).not.toHaveAttribute('disabled');
 
     await fireEvent.click(signInButton);
@@ -81,11 +84,11 @@ describe('Form', () => {
           user: { email: 'initial@value.com' },
         },
         onSubmit: jest.fn(({ detail: { resetForm } }) => {
-          expect(component.form.$$.ctx.$values.user.email).toEqual(
+          expect(component.form.$capture_state().$values.user.email).toEqual(
             'test@user.com'
           );
           resetForm();
-          expect(component.form.$$.ctx.$values.user.email).toEqual(
+          expect(component.form.$capture_state().$values.user.email).toEqual(
             'initial@value.com'
           );
 
@@ -110,13 +113,13 @@ describe('Form', () => {
           user: { email: 'initial@value.com' },
         },
         onSubmit: jest.fn(({ detail: { resetForm } }) => {
-          expect(component.form.$$.ctx.$values.user.email).toEqual(
+          expect(component.form.$capture_state().$values.user.email).toEqual(
             'test@user.com'
           );
           resetForm({
             user: { email: 'after@reset.com' },
           });
-          expect(component.form.$$.ctx.$values.user.email).toEqual(
+          expect(component.form.$capture_state().$values.user.email).toEqual(
             'after@reset.com'
           );
 
@@ -160,7 +163,7 @@ describe('Form', () => {
     await wait(() => {
       expect(getByText('user.email must be a valid email')).toBeInTheDocument();
     });
-    expect(component.form.$$.ctx.$errors).toEqual({
+    expect(component.form.$capture_state().$errors).toEqual({
       user: { email: 'user.email must be a valid email' },
     });
 
@@ -170,12 +173,12 @@ describe('Form', () => {
   it('registers fields and sets default values', async () => {
     const { component } = await render(App);
 
-    expect(component.form.$$.ctx.$values).toMatchObject({
+    expect(component.form.$capture_state().$values).toMatchObject({
       user: { email: '' },
       language: '',
       os: [],
     });
-    expect(component.form.$$.ctx.$touched).toMatchObject({
+    expect(component.form.$capture_state().$touched).toMatchObject({
       user: { email: false },
       language: false,
       os: false,
@@ -184,7 +187,7 @@ describe('Form', () => {
 
   it('isValid is undefined initially', async () => {
     const { component } = await render(App);
-    expect(component.form.$$.ctx.isValid).toBe(undefined);
+    expect(component.form.$capture_state().isValid).toBe(undefined);
   });
 
   it('sets initial values', async () => {
@@ -192,7 +195,7 @@ describe('Form', () => {
       props: { initialValues: { user: { email: 'test@user.com' } } },
     });
 
-    expect(component.form.$$.ctx.$values).toMatchObject({
+    expect(component.form.$capture_state().$values).toMatchObject({
       user: { email: 'test@user.com' },
       language: '',
       os: [],
