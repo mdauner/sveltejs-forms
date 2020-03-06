@@ -10,7 +10,7 @@
 
 Declarative forms for [Svelte](https://svelte.dev/).
 
-[DEMO](https://svelte.dev/repl/8e7deaa261364b4f8b2c0caff1982eeb?version=3.12.1)
+[DEMO](https://svelte.dev/repl/8e7deaa261364b4f8b2c0caff1982eeb?version=3.19.2)
 
 ## Features
 
