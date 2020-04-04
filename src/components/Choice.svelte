@@ -8,7 +8,7 @@
   export let name;
   export let options;
   export let multiple = false;
-  export let value;
+  export let value = '';
 
   const { touchField, values, errors, touched, validateOnChange } = getContext(
     FORM

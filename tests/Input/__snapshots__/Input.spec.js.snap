@@ -27,7 +27,7 @@ exports[`Input matches snapshot 1`] = `
 </div>
 `;
 
-exports[`Input passes props 1`] = `
+exports[`Input passes props to input 1`] = `
 <div>
   <form
     class="sveltejs-forms"
