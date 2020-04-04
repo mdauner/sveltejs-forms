@@ -9,6 +9,7 @@
   export let form = null;
   export let multiline = false;
   export let label = '';
+  export let disabled = false;
 </script>
 
 <Form
@@ -19,7 +20,7 @@
   on:submit={onSubmit}
   let:isSubmitting
   bind:this={form}>
-  <Input name="email" {label} placeholder="Email" {multiline} />
+  <Input name="email" {label} placeholder="Email" {multiline} {disabled} />
 
   <button type="submit" disabled={isSubmitting}>Sign in</button>
 </Form>

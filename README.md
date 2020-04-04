@@ -126,11 +126,18 @@ $ yarn add sveltejs-forms
   let:isSubmitting
   let:isValid
 >
-  <Input name="user.email" label="Email" placeholder="e.g. user@example.com" /> <!-- nested field -->
+  <Input
+    name="user.email" <!-- nested field -->
+    label="Email Address"
+    value="test@user.com" <!-- initial value -->
+    placeholder="e.g. user@example.com" />
   <Input name="password" type="password" placeholder="Password" />
   <Select name="language" options={langOptions} />
-  <Choice name="os" options={osOptions} multiple />
-
+  <Choice
+    name="os"
+    options={osOptions}
+    disabled
+    multiple />
   <button type="reset">Reset</button>
   <button type="submit" disabled={isSubmitting}>Sign in</button>
   The form is valid: {isValid}

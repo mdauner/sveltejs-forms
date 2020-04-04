@@ -6,7 +6,6 @@
   export let name;
   export let label = '';
   export let type = 'text';
-  export let placeholder = '';
   export let multiline = false;
 
   const { touchField, setValue, values, errors, touched } = getContext(FORM);
@@ -18,6 +17,10 @@
   function onBlur() {
     touchField(name);
   }
+
+  if (Object.keys($$restProps).includes('value')) {
+    setTimeout(() => setValue(name, $$restProps.value, false), 0);
+  }
 </script>
 
 <div class="field" class:error={get($touched, name) && get($errors, name)}>
@@ -27,20 +30,20 @@
   {#if multiline}
     <textarea
       {name}
-      {placeholder}
       id={name}
       value={get($values, name)}
       on:blur={onBlur}
-      on:change={onChange} />
+      on:change={onChange}
+      {...$$restProps} />
   {:else}
     <input
       {name}
       {type}
-      {placeholder}
       id={name}
       value={get($values, name)}
       on:blur={onBlur}
-      on:change={onChange} />
+      on:change={onChange}
+      {...$$restProps} />
   {/if}
   {#if get($touched, name) && get($errors, name)}
     <div class="message">{get($errors, name)}</div>

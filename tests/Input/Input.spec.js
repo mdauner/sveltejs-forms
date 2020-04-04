@@ -14,6 +14,11 @@ describe('Input', () => {
     expect(container.firstChild).toMatchSnapshot();
   });
 
+  it('passes props to input', async () => {
+    const { container } = await render(App, { props: { disabled: true } });
+    expect(container.firstChild).toMatchSnapshot();
+  });
+
   it('updates form value on change', async () => {
     const { component, getByPlaceholderText } = await render(App);
 

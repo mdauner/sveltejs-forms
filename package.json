@@ -44,11 +44,12 @@
     "rollup-plugin-terser": "~5.2.0",
     "semantic-release": "~17.0.4",
     "sirv-cli": "~0.4.5",
-    "svelte": "~3.19.2",
+    "svelte": "~3.20.0",
     "svelte-preprocess": "~3.4.0",
     "yup": "~0.28.2"
   },
   "peerDependencies": {
+    "svelte": "~3.20.0",
     "yup": "~0.28.2"
   },
   "dependencies": {

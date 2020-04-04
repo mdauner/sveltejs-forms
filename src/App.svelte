@@ -82,14 +82,20 @@
   <Input
     name="user.email"
     label="Email Address"
+    value="test@user.com"
     placeholder="e.g. user@example.com" />
-  <Input
-    name="user.password"
-    type="password"
-    placeholder="Password"
-    multiline />
-  <Select name="user.language" label="Language" options={langOptions} />
-  <Choice name="user.os" options={osOptions} multiple />
+  <Input name="user.password" type="password" placeholder="Password" />
+  <Select
+    name="user.language"
+    label="Language"
+    options={langOptions}
+    value={langOptions[2].id} />
+  <Choice
+    name="user.os"
+    options={osOptions}
+    value={['linux', 'windows']}
+    disabled
+    multiple />
 
   <button type="reset">Reset</button>
   <button type="submit" disabled={isSubmitting}>Sign in</button>

@@ -33,16 +33,19 @@ exports[`Form matches snapshot 1`] = `
           value="svelte"
         >
           Svelte
+           
         </option>
         <option
           value="react"
         >
           React
+           
         </option>
         <option
           value="angular"
         >
           Angular
+           
         </option>
       </select>
        
@@ -55,7 +58,6 @@ exports[`Form matches snapshot 1`] = `
         id="macos"
         name="os"
         type="checkbox"
-        value="macos"
       />
        
       <label
@@ -68,7 +70,6 @@ exports[`Form matches snapshot 1`] = `
         id="linux"
         name="os"
         type="checkbox"
-        value="linux"
       />
        
       <label
@@ -81,7 +82,6 @@ exports[`Form matches snapshot 1`] = `
         id="windows"
         name="os"
         type="checkbox"
-        value="windows"
       />
        
       <label
@@ -200,16 +200,19 @@ exports[`Form shows error message when schema is defined 1`] = `
           value="svelte"
         >
           Svelte
+           
         </option>
         <option
           value="react"
         >
           React
+           
         </option>
         <option
           value="angular"
         >
           Angular
+           
         </option>
       </select>
        
@@ -222,7 +225,6 @@ exports[`Form shows error message when schema is defined 1`] = `
         id="macos"
         name="os"
         type="checkbox"
-        value="macos"
       />
        
       <label
@@ -235,7 +237,6 @@ exports[`Form shows error message when schema is defined 1`] = `
         id="linux"
         name="os"
         type="checkbox"
-        value="linux"
       />
        
       <label
@@ -248,7 +249,6 @@ exports[`Form shows error message when schema is defined 1`] = `
         id="windows"
         name="os"
         type="checkbox"
-        value="windows"
       />
        
       <label

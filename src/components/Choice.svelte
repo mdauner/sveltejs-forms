@@ -8,6 +8,7 @@
   export let name;
   export let options;
   export let multiple = false;
+  export let value;
 
   const { touchField, values, errors, touched, validateOnChange } = getContext(
     FORM
@@ -26,6 +27,12 @@
   function onBlur() {
     touchField(name);
   }
+
+  if (value) {
+    setTimeout(() => {
+      choice.set(value);
+    }, 0);
+  }
 </script>
 
 <div class="field" class:error={get($touched, name) && get($errors, name)}>
@@ -38,7 +45,8 @@
         on:change={onChange}
         on:blur={onBlur}
         bind:group={$choice}
-        value={option.id} />
+        value={option.id}
+        {...$$restProps} />
     {:else}
       <input
         id={option.id}
@@ -47,7 +55,8 @@
         on:change={onChange}
         on:blur={onBlur}
         bind:group={$choice}
-        value={option.id} />
+        value={option.id}
+        {...$$restProps} />
     {/if}
     {#if option.title}
       <label for={option.id}>{option.title}</label>

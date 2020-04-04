@@ -96,11 +96,11 @@
     }
   }
 
-  function setValue(path, value) {
+  function setValue(path, value, validateForm = true) {
     $values = set($values, path, value);
     $touched = set($touched, path, true);
 
-    if (validateOnChange) {
+    if (validateForm && validateOnChange) {
       validate();
     }
   }
