@@ -2,12 +2,16 @@
   import { getContext } from 'svelte';
   import get from 'lodash-es/get';
   import { FORM } from './Form.svelte';
-
+  import { exclude } from '@smui/common/exclude.js';
+  import { useActions } from '@smui/common/useActions.js';
+  
   export let name;
   export let label = '';
   export let type = 'text';
   export let multiline = false;
-
+  export let use = [];
+  let className = '';
+  export {className as class};
   const { touchField, setValue, values, errors, touched } = getContext(FORM);
 
   function onChange(event) {
@@ -23,7 +27,10 @@
   }
 </script>
 
-<div class="field" class:error={get($touched, name) && get($errors, name)}>
+<div use:useActions={use}
+     class="field {className}" 
+     class:error={get($touched, name) && get($errors, name)}
+     {...exclude($$props, ['use', 'class'])}>
   {#if label}
     <label for={name}>{label}</label>
   {/if}

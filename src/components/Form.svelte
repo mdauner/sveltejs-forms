@@ -25,6 +25,13 @@
   let form;
   let fields;
 
+  // `class` usage inspired by the implementation at Svelte-Material-UI
+  import { exclude } from '@smui/common/exclude.js';
+  import { useActions } from '@smui/common/useActions.js';
+  export let use = [];
+  let className = '';
+  export { className as class };
+
   onMount(() => {
     fields = Array.from(form.querySelectorAll('input,textarea,select'))
       .filter(el => !!el.name)
@@ -125,10 +132,13 @@
 </script>
 
 <form
+  use:useActions={use}
   on:submit|preventDefault={handleSubmit}
   on:reset={handleResetClick}
-  class="sveltejs-forms"
-  bind:this={form}>
+  class="sveltejs-forms {className}"
+  bind:this={form}
+  {...exclude($$props, ['use', 'class'])}
+  >
   <slot
     isSubmitting={$isSubmitting}
     {isValid}

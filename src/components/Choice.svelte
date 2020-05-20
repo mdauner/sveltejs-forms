@@ -9,6 +9,13 @@
   export let options;
   export let multiple = false;
   export let value = '';
+  
+  // `let` usage inspired by Svelte-Material-UI repository
+  import { exclude } from '@smui/common/exclude.js';
+  import { useActions } from '@smui/common/useActions.js';
+  export let use = [];
+  let className = '';
+  export { className as class };
 
   const { touchField, values, errors, touched, validateOnChange } = getContext(
     FORM
@@ -36,33 +43,35 @@
 </script>
 
 <div class="field" class:error={get($touched, name) && get($errors, name)}>
-  {#each options as option}
-    {#if multiple}
-      <input
-        id={option.id}
-        type="checkbox"
-        {name}
-        on:change={onChange}
-        on:blur={onBlur}
-        bind:group={$choice}
-        value={option.id}
-        {...$$restProps} />
-    {:else}
-      <input
-        id={option.id}
-        type="radio"
-        {name}
-        on:change={onChange}
-        on:blur={onBlur}
-        bind:group={$choice}
-        value={option.id}
-        {...$$restProps} />
-    {/if}
-    {#if option.title}
-      <label for={option.id}>{option.title}</label>
-    {/if}
-  {/each}
-  {#if get($touched, name) && get($errors, name)}
-    <div class="message">{get($errors, name)}</div>
-  {/if}
+  <div use:useActions={use} class="{className}" {...exclude($$props, ['use', 'class'])}>
+      {#each options as option}
+        {#if multiple}
+          <input
+            id={option.id}
+            type="checkbox"
+            {name}
+            on:change={onChange}
+            on:blur={onBlur}
+            bind:group={$choice}
+            value={option.id}
+            {...$$restProps} />
+        {:else}
+          <input
+            id={option.id}
+            type="radio"
+            {name}
+            on:change={onChange}
+            on:blur={onBlur}
+            bind:group={$choice}
+            value={option.id}
+            {...$$restProps} />
+        {/if}
+        {#if option.title}
+          <label for={option.id}>{option.title}</label>
+        {/if}
+      {/each}
+      {#if get($touched, name) && get($errors, name)}
+        <div class="message">{get($errors, name)}</div>
+      {/if}
+  </div>
 </div>
