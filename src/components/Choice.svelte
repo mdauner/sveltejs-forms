@@ -42,36 +42,37 @@
   }
 </script>
 
-<div class="field" class:error={get($touched, name) && get($errors, name)}>
-  <div use:useActions={use} class="{className}" {...exclude($$props, ['use', 'class'])}>
-      {#each options as option}
-        {#if multiple}
-          <input
-            id={option.id}
-            type="checkbox"
-            {name}
-            on:change={onChange}
-            on:blur={onBlur}
-            bind:group={$choice}
-            value={option.id}
-            {...$$restProps} />
-        {:else}
-          <input
-            id={option.id}
-            type="radio"
-            {name}
-            on:change={onChange}
-            on:blur={onBlur}
-            bind:group={$choice}
-            value={option.id}
-            {...$$restProps} />
-        {/if}
-        {#if option.title}
-          <label for={option.id}>{option.title}</label>
-        {/if}
-      {/each}
-      {#if get($touched, name) && get($errors, name)}
-        <div class="message">{get($errors, name)}</div>
-      {/if}
-  </div>
+<div use:useActions={use} 
+     class="field {className}" 
+     class:error={get($touched, name) && get($errors, name)} 
+     {...exclude($$props, ['use', 'class'])}>
+  {#each options as option}
+    {#if multiple}
+      <input
+        id={option.id}
+        type="checkbox"
+        {name}
+        on:change={onChange}
+        on:blur={onBlur}
+        bind:group={$choice}
+        value={option.id}
+        {...$$restProps} />
+    {:else}
+      <input
+        id={option.id}
+        type="radio"
+        {name}
+        on:change={onChange}
+        on:blur={onBlur}
+        bind:group={$choice}
+        value={option.id}
+        {...$$restProps} />
+    {/if}
+    {#if option.title}
+      <label for={option.id}>{option.title}</label>
+    {/if}
+  {/each}
+  {#if get($touched, name) && get($errors, name)}
+    <div class="message">{get($errors, name)}</div>
+  {/if}
 </div>
