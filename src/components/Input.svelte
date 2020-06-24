@@ -7,6 +7,7 @@
   export let label = '';
   export let type = 'text';
   export let multiline = false;
+  export let rows = 2;
 
   const { touchField, setValue, values, errors, touched } = getContext(FORM);
 
@@ -29,6 +30,7 @@
   {/if}
   {#if multiline}
     <textarea
+      {rows}
       {name}
       id={name}
       value={get($values, name)}
