@@ -20,7 +20,7 @@
     newValue => set($values, name, newValue)
   );
 
-  function onChange() {
+  $: if ($choice) {
     touchField(name, validateOnChange);
   }
 
@@ -42,7 +42,6 @@
         id={option.id}
         type="checkbox"
         {name}
-        on:change={onChange}
         on:blur={onBlur}
         bind:group={$choice}
         value={option.id}
@@ -52,7 +51,6 @@
         id={option.id}
         type="radio"
         {name}
-        on:change={onChange}
         on:blur={onBlur}
         bind:group={$choice}
         value={option.id}
