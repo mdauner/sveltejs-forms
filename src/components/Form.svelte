@@ -3,7 +3,7 @@
 </script>
 
 <script>
-  import { setContext, createEventDispatcher, onMount } from 'svelte';
+  import { setContext, createEventDispatcher, onMount, afterUpdate } from 'svelte';
   import { writable } from 'svelte/store';
   import set from 'lodash-es/set';
   import get from 'lodash-es/get';
@@ -13,6 +13,7 @@
   export let schema = null;
   export let validateOnChange = true;
   export let validateOnBlur = true;
+  export let resetWhenChanged = false;
 
   const dispatch = createEventDispatcher();
   const values = writable(createObjectWithDefaultValue());
@@ -24,23 +25,24 @@
   let isValid;
   let form;
   let fields;
+  let resetOnUpdate = false;
+
+  afterUpdate(() => {
+    updateFields();
+    if (resetOnUpdate) {
+      resetForm();
+      resetOnUpdate = false;
+    }
+  });
 
   onMount(() => {
-    fields = Array.from(form.querySelectorAll('input,textarea,select'))
-      .filter(el => !!el.name)
-      .map(el => ({ path: el.name }))
-      .reduce((allElements, currentElement) => {
-        const isCurrentElement = el => el.path === currentElement.path;
-        const multiple = !!allElements.find(isCurrentElement);
-
-        return [
-          ...allElements.filter(el => !isCurrentElement(el)),
-          { ...currentElement, multiple },
-        ];
-      }, []);
-
+    updateFields();
     resetForm();
   });
+
+  $: if (resetWhenChanged) {
+    resetOnUpdate = true;
+  }
 
   setContext(FORM, {
     touchField,
@@ -53,6 +55,21 @@
     validateOnBlur,
     validateOnChange,
   });
+
+  function updateFields() {
+    fields = Array.from(form.querySelectorAll('input,textarea,select'))
+      .filter(el => !!el.name)
+      .map(el => ({ path: el.name }))
+      .reduce((allElements, currentElement) => {
+        const isCurrentElement = el => el.path === currentElement.path;
+        const multiple = !!allElements.find(isCurrentElement);
+
+        return [
+          ...allElements.filter(el => !isCurrentElement(el)),
+          { ...currentElement, multiple },
+        ];
+      }, []);
+  }
 
   function resetForm(data) {
     fields.forEach(({ path, multiple }) => {
