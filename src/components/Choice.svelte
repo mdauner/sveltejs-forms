@@ -39,7 +39,7 @@
   {#each options as option}
     {#if multiple}
       <input
-        id={option.id}
+        id="{name}-{option.id}"
         type="checkbox"
         {name}
         on:change={onChange}
@@ -49,7 +49,7 @@
         {...$$restProps} />
     {:else}
       <input
-        id={option.id}
+        id="{name}-{option.id}"
         type="radio"
         {name}
         on:change={onChange}
