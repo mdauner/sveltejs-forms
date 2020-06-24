@@ -7,7 +7,7 @@
   export let label = '';
   export let type = 'text';
   export let multiline = false;
-  export let rows = 2;
+  export let rows;
 
   const { touchField, setValue, values, errors, touched } = getContext(FORM);
 
