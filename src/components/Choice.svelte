@@ -20,7 +20,7 @@
     newValue => set($values, name, newValue)
   );
 
-  function onChange(e) {
+  function onChange() {
     touchField(name, validateOnChange);
   }
 
