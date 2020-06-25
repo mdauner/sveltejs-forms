@@ -62,9 +62,7 @@
       <label for={option.id}>
         {#if option.save}
           {@html option.title}
-        {:else}
-          {option.title}
-        {/if}
+        {:else}{option.title}{/if}
       </label>
     {/if}
   {/each}
