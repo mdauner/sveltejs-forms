@@ -55,7 +55,7 @@ exports[`Form matches snapshot 1`] = `
       class="field"
     >
       <input
-        id="macos"
+        id="os-macos"
         name="os"
         type="checkbox"
       />
@@ -67,7 +67,7 @@ exports[`Form matches snapshot 1`] = `
       </label>
       
       <input
-        id="linux"
+        id="os-linux"
         name="os"
         type="checkbox"
       />
@@ -79,7 +79,7 @@ exports[`Form matches snapshot 1`] = `
       </label>
       
       <input
-        id="windows"
+        id="os-windows"
         name="os"
         type="checkbox"
       />
@@ -105,10 +105,7 @@ exports[`Form matches snapshot 1`] = `
 exports[`Form onSubmit event returns values, resetForm, setSubmitting 1`] = `
 Object {
   "language": "svelte",
-  "os": Array [
-    "macos",
-    "windows",
-  ],
+  "os": Array [],
   "user": Object {
     "email": "test@user.com",
   },
@@ -118,10 +115,7 @@ Object {
 exports[`Form onSubmit event returns values, resetForm, setSubmitting 2`] = `
 Object {
   "language": "svelte",
-  "os": Array [
-    "macos",
-    "windows",
-  ],
+  "os": Array [],
   "user": Object {
     "email": "test@user.com",
   },
@@ -222,7 +216,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       class="field"
     >
       <input
-        id="macos"
+        id="os-macos"
         name="os"
         type="checkbox"
       />
@@ -234,7 +228,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       </label>
       
       <input
-        id="linux"
+        id="os-linux"
         name="os"
         type="checkbox"
       />
@@ -246,7 +240,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       </label>
       
       <input
-        id="windows"
+        id="os-windows"
         name="os"
         type="checkbox"
       />
