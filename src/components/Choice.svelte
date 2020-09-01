@@ -42,9 +42,9 @@
         id="{name}-{option.id}"
         type="checkbox"
         {name}
+        bind:group={$choice}
         on:change={onChange}
         on:blur={onBlur}
-        bind:group={$choice}
         value={option.id}
         {...$$restProps} />
     {:else}
@@ -52,9 +52,9 @@
         id="{name}-{option.id}"
         type="radio"
         {name}
+        bind:group={$choice}
         on:change={onChange}
         on:blur={onBlur}
-        bind:group={$choice}
         value={option.id}
         {...$$restProps} />
     {/if}
