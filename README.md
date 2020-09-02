@@ -38,7 +38,7 @@ $ yarn add sveltejs-forms
 ```html
 <script>
   import { Form, Input, Select, Choice } from 'sveltejs-forms';
-  import * as yup from 'yup';
+  import yup from 'yup@0.27';
 
   function handleSubmit({ detail: { values, setSubmitting, resetForm } }) {
     setTimeout(() => {
@@ -94,25 +94,59 @@ $ yarn add sveltejs-forms
   };
 </script>
 
-<style lang="scss" global>
-  .sveltejs-forms {
-    background-color: lightgray;
+<style>
+  :global(.sveltejs-forms) {
+    background-color: #f8f8f8;
     display: inline-block;
     padding: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 
-    .field {
-      margin-bottom: 1rem;
-      &.error {
-        input {
-          border: 1px solid red;
-        }
-        .message {
-          margin-top: 0.2rem;
-          color: red;
-          font-size: 0.8rem;
-        }
-      }
-    }
+  :global(label) {
+    font-size: 0.8rem;
+    color: #888;
+    margin-bottom: 0.2rem;
+  }
+
+  :global(.message) {
+    font-size: 0.8rem;
+    color: #888;
+    margin: 0.2rem 0;
+    color: #f56565;
+  }
+
+  :global(input[type='text']),
+  :global(textarea),
+  :global(select) {
+    width: 100%;
+    background-color: white;
+    margin: 0;
+  }
+
+  :global(input[type='checkbox'] + label) {
+    display: inline-block;
+    margin-right: 2rem;
+  }
+
+  :global(.field) {
+    margin-bottom: 1rem;
+  }
+	
+  button {
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    margin-right: 1rem;
+    color: white;
+  }
+
+  button[type='reset'] {
+    background-color: #f56565;
+  }
+
+  button[type='submit'] {
+    background-color: #48bb78;
+    width: 80px;
   }
 </style>
 
@@ -140,7 +174,7 @@ $ yarn add sveltejs-forms
     multiple />
   <button type="reset">Reset</button>
   <button type="submit" disabled={isSubmitting}>Sign in</button>
-  The form is valid: {isValid}
+  <div>The form is valid: {isValid}</div>
 </Form>
 ```
 
@@ -150,7 +184,7 @@ $ yarn add sveltejs-forms
 <script>
   import { Form } from 'sveltejs-forms';
   import Select from 'svelte-select';
-  import yup from 'yup';
+  import yup from 'yup@0.27';
 
   let svelteSelect;
 
