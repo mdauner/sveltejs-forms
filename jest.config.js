@@ -1,7 +1,7 @@
 module.exports = {
   transform: {
     '^.+\\.m?js$': 'babel-jest',
-    '^.+\\.svelte$': 'jest-transform-svelte',
+    "^.+\\.svelte$": ["svelte-jester", { "preprocess": true }]
   },
   transformIgnorePatterns: [
     '/node_modules/(?!(lodash-es|svelte-writable-derived)).+\\.m?js$',

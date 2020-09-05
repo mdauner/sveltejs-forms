@@ -1,5 +1,6 @@
 import App from './TestApp.svelte';
-import { fireEvent, wait } from '@testing-library/svelte';
+import { fireEvent, waitFor } from '@testing-library/svelte';
+import userEvent from '@testing-library/user-event';
 import * as yup from 'yup';
 import { render } from '../utils';
 
@@ -33,6 +34,33 @@ describe('Input', () => {
     });
   });
 
+  it('validates on input if field is touched', async () => {
+    const schema = yup.object().shape({
+      email: yup.string().min(4),
+    });
+    const { component, getByPlaceholderText } = await render(App, {
+      props: { schema },
+    });
+
+    const emailInput = getByPlaceholderText('Email');
+
+    await fireEvent.change(emailInput, {
+      target: { value: 'pas' },
+    });
+
+    await waitFor(() =>
+      expect(component.form.$capture_state().$errors.email).toEqual(
+        'email must be at least 4 characters'
+      )
+    );
+
+    userEvent.type(emailInput, 's');
+
+    await waitFor(() =>
+      expect(component.form.$capture_state().$errors).toEqual({})
+    );
+  });
+
   it('validates on change if validateOnChange is true', async () => {
     const schema = yup.object().shape({
       email: yup.string().email(),
@@ -46,11 +74,12 @@ describe('Input', () => {
     await fireEvent.change(emailInput, {
       target: { value: 'invalid value' },
     });
-    await wait();
 
-    expect(component.form.$capture_state().$errors).toEqual({
-      email: 'email must be a valid email',
-    });
+    await waitFor(() =>
+      expect(component.form.$capture_state().$errors).toEqual({
+        email: 'email must be a valid email',
+      })
+    );
   });
 
   it('does not validate on change if validateOnChange is false', async () => {
@@ -66,9 +95,10 @@ describe('Input', () => {
     await fireEvent.change(emailInput, {
       target: { value: 'invalid value' },
     });
-    await wait();
 
-    expect(component.form.$capture_state().$errors).toEqual({});
+    await waitFor(() =>
+      expect(component.form.$capture_state().$errors).toEqual({})
+    );
   });
 
   it('validates on blur if validateOnBlur is true', async () => {
@@ -85,11 +115,12 @@ describe('Input', () => {
       target: { value: 'invalid value' },
     });
     await fireEvent.blur(emailInput);
-    await wait();
 
-    expect(component.form.$capture_state().$errors).toEqual({
-      email: 'email must be a valid email',
-    });
+    await waitFor(() =>
+      expect(component.form.$capture_state().$errors).toEqual({
+        email: 'email must be a valid email',
+      })
+    );
   });
 
   it('does not validate on blur if validateOnBlur is false', async () => {
@@ -106,8 +137,10 @@ describe('Input', () => {
       target: { value: 'invalid value' },
     });
     await fireEvent.blur(emailInput);
-    await wait();
-    expect(component.form.$capture_state().$errors).toEqual({});
+
+    await waitFor(() =>
+      expect(component.form.$capture_state().$errors).toEqual({})
+    );
   });
 
   it('matches snapshot', async () => {

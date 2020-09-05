@@ -34,6 +34,7 @@
       value={get($values, name)}
       on:blur={onBlur}
       on:change={onChange}
+      on:input={get($touched, name) && onChange}
       {...$$restProps} />
   {:else}
     <input
@@ -43,6 +44,7 @@
       value={get($values, name)}
       on:blur={onBlur}
       on:change={onChange}
+      on:input={get($touched, name) && onChange}
       {...$$restProps} />
   {/if}
   {#if get($touched, name) && get($errors, name)}
