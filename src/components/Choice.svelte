@@ -59,7 +59,11 @@
         {...$$restProps} />
     {/if}
     {#if option.title}
-      <label for={option.id}>{option.title}</label>
+      <label for={option.id}>
+        {#if option.save}
+          {@html option.title}
+        {:else}{option.title}{/if}
+      </label>
     {/if}
   {/each}
   {#if get($touched, name) && get($errors, name)}
