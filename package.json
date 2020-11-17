@@ -63,7 +63,7 @@
     "lint": "eslint --color './**/*.{js,svelte}'",
     "test": "jest --verbose",
     "autobuild": "rollup -c -w",
-    "start:dev": "sirv public --single --dev",
+    "start:dev": "sirv public -c --single --dev",
     "dev": "run-p start:dev autobuild",
     "build": "rollup -c",
     "prepublishOnly": "npm run build",
