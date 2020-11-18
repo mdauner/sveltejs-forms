@@ -43,7 +43,7 @@
     "rollup-plugin-node-resolve": "~5.2.0",
     "rollup-plugin-svelte": "~5.1.1",
     "rollup-plugin-terser": "~5.2.0",
-    "semantic-release": "~17.0.4",
+    "semantic-release": "~17.2.3",
     "sirv-cli": "~0.4.5",
     "svelte": "~3.20.0",
     "svelte-jester": "^1.1.5",
