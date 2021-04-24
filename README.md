@@ -23,13 +23,12 @@ Declarative forms for [Svelte](https://svelte.dev/).
 
 ```shell
 $ npm i sveltejs-forms
-```
-
-or
-
-```shell
+# OR
+$ pnpm i sveltejs-forms
+# OR
 $ yarn add sveltejs-forms
 ```
+
 
 ## How to use
 
