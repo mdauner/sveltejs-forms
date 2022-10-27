@@ -4,7 +4,10 @@
   "homepage": "https://mdauner.github.io/sveltejs-forms/",
   "version": "0.0.0-development",
   "license": "MIT",
-  "repository": "github:mdauner/sveltejs-forms",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ThatConference/sveltejs-forms.git"
+  },
   "svelte": "src/components/components.module.js",
   "module": "dist/index.min.mjs",
   "main": "dist/index.min.js",
