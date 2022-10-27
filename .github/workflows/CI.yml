@@ -13,11 +13,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js 10.x
-        uses: actions/setup-node@v1
+      - uses: actions/checkout@v3
+      - name: Use Node.js 16.x
+        uses: actions/setup-node@v3
         with:
-          node-version: 10.x
+          node-version: 16
       - name: yarn install, build, and test
         run: |
           yarn install
@@ -26,9 +26,9 @@ jobs:
           yarn run prettier
           yarn run test
 
-      - name: Codecov
-        run: bash <(curl -s https://codecov.io/bash) -t $TOKEN -B $REF
-        env:
-          CI: true
-          TOKEN: "${{ secrets.CODECOV_TOKEN }}"
-          REF: "${{ github.ref }}"
+      # - name: Codecov
+      #   run: bash <(curl -s https://codecov.io/bash) -t $TOKEN -B $REF
+      #   env:
+      #     CI: true
+      #     TOKEN: "${{ secrets.CODECOV_TOKEN }}"
+      #     REF: "${{ github.ref }}"
