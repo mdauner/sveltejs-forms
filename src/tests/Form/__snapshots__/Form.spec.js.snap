@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Form matches snapshot 1`] = `
+exports[`Form > matches snapshot 1`] = `
 <div>
   <form
     class="sveltejs-forms"
@@ -17,6 +17,7 @@ exports[`Form matches snapshot 1`] = `
       />
        
     </div>
+    <!--&lt;Input&gt;-->
      
     <div
       class="field"
@@ -50,6 +51,7 @@ exports[`Form matches snapshot 1`] = `
       </select>
        
     </div>
+    <!--&lt;Select&gt;-->
      
     <div
       class="field"
@@ -58,6 +60,7 @@ exports[`Form matches snapshot 1`] = `
         id="os-macos"
         name="os"
         type="checkbox"
+        value="macos"
       />
        
       <label
@@ -70,6 +73,7 @@ exports[`Form matches snapshot 1`] = `
         id="os-linux"
         name="os"
         type="checkbox"
+        value="linux"
       />
        
       <label
@@ -82,6 +86,7 @@ exports[`Form matches snapshot 1`] = `
         id="os-windows"
         name="os"
         type="checkbox"
+        value="windows"
       />
        
       <label
@@ -92,6 +97,7 @@ exports[`Form matches snapshot 1`] = `
       
        
     </div>
+    <!--&lt;Choice&gt;-->
      
     <button
       type="submit"
@@ -99,64 +105,12 @@ exports[`Form matches snapshot 1`] = `
       Sign in
     </button>
   </form>
+  <!--&lt;Form&gt;-->
+  <!--&lt;TestApp&gt;-->
 </div>
 `;
 
-exports[`Form onSubmit event returns values, resetForm, setSubmitting 1`] = `
-Object {
-  "language": "svelte",
-  "os": Array [],
-  "user": Object {
-    "email": "test@user.com",
-  },
-}
-`;
-
-exports[`Form onSubmit event returns values, resetForm, setSubmitting 2`] = `
-Object {
-  "language": "svelte",
-  "os": Array [],
-  "user": Object {
-    "email": "test@user.com",
-  },
-}
-`;
-
-exports[`Form onSubmit event returns values, resetForm, setSubmitting 3`] = `Object {}`;
-
-exports[`Form onSubmit event returns values, resetForm, setSubmitting 4`] = `
-Object {
-  "language": true,
-  "os": true,
-  "user": Object {
-    "email": true,
-  },
-}
-`;
-
-exports[`Form onSubmit event returns values, resetForm, setSubmitting 5`] = `
-Object {
-  "language": "",
-  "os": Array [],
-  "user": Object {
-    "email": "",
-  },
-}
-`;
-
-exports[`Form onSubmit event returns values, resetForm, setSubmitting 6`] = `Object {}`;
-
-exports[`Form onSubmit event returns values, resetForm, setSubmitting 7`] = `
-Object {
-  "language": false,
-  "os": false,
-  "user": Object {
-    "email": false,
-  },
-}
-`;
-
-exports[`Form shows error message when schema is defined 1`] = `
+exports[`Form > shows error message when schema is defined 1`] = `
 <div>
   <form
     class="sveltejs-forms"
@@ -178,6 +132,7 @@ exports[`Form shows error message when schema is defined 1`] = `
         user.email must be a valid email
       </div>
     </div>
+    <!--&lt;Input&gt;-->
      
     <div
       class="field"
@@ -211,6 +166,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       </select>
        
     </div>
+    <!--&lt;Select&gt;-->
      
     <div
       class="field"
@@ -219,6 +175,7 @@ exports[`Form shows error message when schema is defined 1`] = `
         id="os-macos"
         name="os"
         type="checkbox"
+        value="macos"
       />
        
       <label
@@ -231,6 +188,7 @@ exports[`Form shows error message when schema is defined 1`] = `
         id="os-linux"
         name="os"
         type="checkbox"
+        value="linux"
       />
        
       <label
@@ -243,6 +201,7 @@ exports[`Form shows error message when schema is defined 1`] = `
         id="os-windows"
         name="os"
         type="checkbox"
+        value="windows"
       />
        
       <label
@@ -253,6 +212,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       
        
     </div>
+    <!--&lt;Choice&gt;-->
      
     <button
       type="submit"
@@ -260,5 +220,7 @@ exports[`Form shows error message when schema is defined 1`] = `
       Sign in
     </button>
   </form>
+  <!--&lt;Form&gt;-->
+  <!--&lt;TestApp&gt;-->
 </div>
 `;

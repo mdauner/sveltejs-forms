@@ -1,2 +1,7 @@
 README.md
 coverage
+.svelte-kit/**
+static/**
+build/**
+node_modules/**
+CHANGELOG.md

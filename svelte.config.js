@@ -1,8 +1,10 @@
-const autoPreprocess = require('svelte-preprocess');
+import adapter from '@sveltejs/adapter-auto';
 
-module.exports = {
-  preprocess: autoPreprocess({
-    postcss: true,
-    scss: { includePaths: ['src', 'node_modules'] },
-  }),
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
+	kit: {
+		adapter: adapter()
+	}
 };
+
+export default config;

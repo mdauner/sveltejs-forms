@@ -1,6 +1,6 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1
 
-exports[`Input matches snapshot 1`] = `
+exports[`Input > matches snapshot 1`] = `
 <div>
   <form
     class="sveltejs-forms"
@@ -17,6 +17,7 @@ exports[`Input matches snapshot 1`] = `
       />
        
     </div>
+    <!--&lt;Input&gt;-->
      
     <button
       type="submit"
@@ -24,10 +25,12 @@ exports[`Input matches snapshot 1`] = `
       Sign in
     </button>
   </form>
+  <!--&lt;Form&gt;-->
+  <!--&lt;TestApp&gt;-->
 </div>
 `;
 
-exports[`Input passes props to input 1`] = `
+exports[`Input > passes props to input 1`] = `
 <div>
   <form
     class="sveltejs-forms"
@@ -45,6 +48,7 @@ exports[`Input passes props to input 1`] = `
       />
        
     </div>
+    <!--&lt;Input&gt;-->
      
     <button
       type="submit"
@@ -52,10 +56,12 @@ exports[`Input passes props to input 1`] = `
       Sign in
     </button>
   </form>
+  <!--&lt;Form&gt;-->
+  <!--&lt;TestApp&gt;-->
 </div>
 `;
 
-exports[`Input renders label 1`] = `
+exports[`Input > renders label 1`] = `
 <div>
   <form
     class="sveltejs-forms"
@@ -77,6 +83,7 @@ exports[`Input renders label 1`] = `
       />
        
     </div>
+    <!--&lt;Input&gt;-->
      
     <button
       type="submit"
@@ -84,10 +91,12 @@ exports[`Input renders label 1`] = `
       Sign in
     </button>
   </form>
+  <!--&lt;Form&gt;-->
+  <!--&lt;TestApp&gt;-->
 </div>
 `;
 
-exports[`Input renders textarea when multiline parameter is set 1`] = `
+exports[`Input > renders textarea when multiline parameter is set 1`] = `
 <div>
   <form
     class="sveltejs-forms"
@@ -103,6 +112,7 @@ exports[`Input renders textarea when multiline parameter is set 1`] = `
       />
        
     </div>
+    <!--&lt;Input&gt;-->
      
     <button
       type="submit"
@@ -110,5 +120,7 @@ exports[`Input renders textarea when multiline parameter is set 1`] = `
       Sign in
     </button>
   </form>
+  <!--&lt;Form&gt;-->
+  <!--&lt;TestApp&gt;-->
 </div>
 `;
